@@ -82,7 +82,7 @@ export function LandingPage() {
                   size="lg"
                   variant="outline"
                   className="border-2 border-[#4A90E2] text-[#4A90E2] hover:bg-[#4A90E2] hover:text-white text-lg h-14"
-                  onClick={() => document.getElementById('for-businesses')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => window.location.href = '/partner-with-us'}
                 >
                   Partner with Us
                 </Button>
@@ -619,7 +619,7 @@ export function LandingPage() {
                 <Button 
                   size="lg"
                   className="bg-[#4A90E2] hover:bg-[#3A7BC8] text-white w-full"
-                  onClick={() => alert('Contact Form (Coming Soon)')}
+                  onClick={() => window.location.href = '/partner-with-us'}
                 >
                   Get In Touch
                 </Button>

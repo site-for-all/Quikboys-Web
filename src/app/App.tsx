@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { LandingPage } from './components/LandingPage';
+import { PartnerPage } from './pages/PartnerPage';
 import DriverOnboardingPage from './pages/DriverOnboardingPage';
 import HubCaptainPage from './pages/HubCaptainPage';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/driver-onboarding" element={<DriverOnboardingPage />} />
             <Route path="/hub-captain" element={<HubCaptainPage />} />
+            <Route path="/partner-with-us" element={<PartnerPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/rider-agreement" element={<RiderAgreement />} />

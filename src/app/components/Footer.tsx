@@ -9,7 +9,7 @@ export function Footer() {
           {/* Logo and Tagline */}
           <div className="flex flex-col items-center space-y-2">
             <div className="flex items-center gap-2">
-              <img src="/images/logo.png" alt="QuikBoys Logo" className="h-16 w-auto" />
+              <img src="/images/delivery-logo.png" alt="QuikBoys Logo" className="h-20 w-auto" />
             </div>
             <p className="text-[#4A90E2] text-lg">Hero Return × Zero Dead KM</p>
           </div>
@@ -67,6 +67,12 @@ export function Footer() {
               className="text-white hover:text-[#4A90E2] transition duration-300 underline"
             >
               Join as Hub Captain
+            </Link>
+            <Link
+              to="/partner-with-us"
+              className="text-white hover:text-[#4A90E2] transition duration-300 underline"
+            >
+              Partner with Us
             </Link>
           </div>
 

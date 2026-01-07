@@ -13,11 +13,18 @@ export function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-white">
-            <img src="/images/logo.png" alt="QuikBoys Logo" className="h-14 w-auto" />
+            <img src="/images/delivery-logo.png" alt="QuikBoys Logo" className="h-16 w-auto" />
           </Link>
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-3">
+             <Button 
+              variant="ghost" 
+              className="text-white hover:text-[#4A90E2] hover:bg-white/10"
+              onClick={() => navigate('/partner-with-us')}
+            >
+              Partner with Us
+            </Button>
             <Button 
               className="bg-[#4A90E2] hover:bg-[#3A7BC8] text-white"
               onClick={() => navigate('/driver-onboarding')}
@@ -31,6 +38,10 @@ export function Header() {
             >
               Join as Hub Captain
             </Button>
+            <div className="flex items-center gap-2 text-white font-medium border-l border-white/20 pl-4 ml-2">
+              <img src="https://flagcdn.com/w40/in.png" alt="India" className="w-5 h-auto rounded-sm" />
+              <span>IN</span>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
