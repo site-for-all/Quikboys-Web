@@ -44,7 +44,7 @@ export function Footer() {
               <Instagram className="w-8 h-8 sm:w-10 sm:h-10" />
             </a>
             <a
-              href="https://wa.me/"
+              href="https://wa.me/918341345599"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4A90E2] transition duration-300"

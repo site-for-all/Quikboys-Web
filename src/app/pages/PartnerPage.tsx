@@ -74,8 +74,8 @@ export function PartnerPage() {
               <p className="text-gray-700 mb-4">
                 Have questions about partnership rates or coverage areas?
               </p>
-              <p className="font-semibold text-[#0066CC]">
-                Call Merchant Support: +91 98765 43210
+              <p className="font-semibold text-[#25D366]">
+                WhatsApp Support: +91 83413 45599
               </p>
             </div>
           </div>

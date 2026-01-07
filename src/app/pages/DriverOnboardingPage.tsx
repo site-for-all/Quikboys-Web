@@ -78,8 +78,8 @@ export default function DriverOnboardingPage() {
                 <p className="text-sm text-gray-600 mb-4">
                   Have questions about the registration process? Contact our support team.
                 </p>
-                <a href="tel:+919876543210" className="text-[#00B4D8] font-semibold hover:underline">
-                  Call Support: +91 98765 43210
+                <a href="https://wa.me/918341345599" target="_blank" rel="noopener noreferrer" className="text-[#25D366] font-semibold hover:underline">
+                  WhatsApp Support: +91 83413 45599
                 </a>
               </div>
             </div>
