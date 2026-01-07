@@ -17,7 +17,7 @@ export function Footer() {
           {/* Social Media Icons */}
           <div className="flex gap-6">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/share/1hYLhcg7se/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4A90E2] transition duration-300"
@@ -26,7 +26,7 @@ export function Footer() {
               <Facebook className="w-8 h-8 sm:w-10 sm:h-10" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/quik-boys-b502a53a3"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4A90E2] transition duration-300"
@@ -35,7 +35,7 @@ export function Footer() {
               <Linkedin className="w-8 h-8 sm:w-10 sm:h-10" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/quikboys_com?igsh=MW0wMHUwZjljZWtrMw=="
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4A90E2] transition duration-300"
