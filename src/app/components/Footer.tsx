@@ -89,6 +89,13 @@ export function Footer() {
             </Link>
           </div>
 
+          
+          {/* Powered By Section */}
+          <div className="flex flex-col items-center space-y-2 pb-4">
+            <span className="text-xs text-gray-500 uppercase tracking-wider font-medium">Powered By</span>
+            <img src="/images/omlvs-logo.png" alt="OMLVS Logo" className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity" />
+          </div>
+
           {/* Copyright */}
           <div className="text-center text-sm text-gray-400 pt-4 border-t border-gray-700 w-full">
             <p>© 2026 QuikBoys. All rights reserved.</p>
