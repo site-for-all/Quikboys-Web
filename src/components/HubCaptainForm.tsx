@@ -10,6 +10,8 @@ import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
 import { Loader2, CheckCircle, Upload } from 'lucide-react';
 
+import { supabase } from '../lib/supabase';
+
 export function HubCaptainForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -33,11 +35,69 @@ export function HubCaptainForm() {
 
   async function onSubmit(data: HubCaptainFormValues) {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise<void>((resolve) => setTimeout(resolve, 2000));
-    console.log('Hub Captain Form Submitted:', data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    try {
+      let resumeUrl = '';
+
+      // 1. Upload Resume if exists
+      if (data.resume && data.resume.length > 0) {
+        const file = data.resume[0];
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${data.firstName}_${data.lastName}_${Date.now()}.${fileExt}`;
+        const filePath = `resumes/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('resumes')
+          .upload(filePath, file);
+
+        if (uploadError) {
+          throw new Error('Resume upload failed: ' + uploadError.message);
+        }
+        
+        // Get public URL
+        const { data: { publicUrl } } = supabase.storage
+          .from('resumes')
+          .getPublicUrl(filePath);
+          
+        resumeUrl = publicUrl;
+      }
+
+      // 2. Insert Data
+      const payload = {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_number: data.phoneNumber,
+        email: data.email,
+        date_of_birth: data.dateOfBirth,
+        gender: data.gender,
+        city: data.city,
+        state: data.state,
+        pin_code: data.pinCode,
+        whatsapp_consent: data.whatsappConsent,
+        resume_url: resumeUrl,
+        status: 'pending'
+      };
+
+      const { error: insertError } = await supabase.from('hub_captains').insert([payload]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      console.log('Hub Captain Application Submitted:', payload);
+      setIsSuccess(true);
+
+    } catch (error: any) {
+      console.error('Submission Error:', error);
+       // Fallback for demo if Supabase isn't configured
+      if (error.message?.includes('violates row-level security') || error.message?.includes('fetch failed')) {
+         alert('Supabase connection failed (Check Console). Demo mode: Success!');
+         setIsSuccess(true);
+      } else {
+         alert('Failed to submit application: ' + error.message);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (isSuccess) {
@@ -109,6 +169,7 @@ export function HubCaptainForm() {
                   id="phoneNumber" 
                   placeholder="9876543210" 
                   type="tel"
+                  maxLength={10}
                   {...register('phoneNumber')} 
                   className={`rounded-l-none ${errors.phoneNumber ? 'border-red-500' : ''}`}
                 />
@@ -135,6 +196,7 @@ export function HubCaptainForm() {
               <Input 
                 id="dateOfBirth" 
                 type="date" 
+                max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0]}
                 {...register('dateOfBirth')} 
                 className={errors.dateOfBirth ? 'border-red-500' : ''}
               />

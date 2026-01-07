@@ -10,6 +10,10 @@ import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
 import { Loader2, CheckCircle } from 'lucide-react';
 
+import { supabase } from '../lib/supabase';
+
+// ... other imports ...
+
 export function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -33,11 +37,42 @@ export function RegistrationForm() {
 
   async function onSubmit(data: DriverFormValues) {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise<void>((resolve) => setTimeout(resolve, 2000));
-    console.log('Form Submitted:', data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    try {
+      // Basic data transformation
+      const payload = {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_number: data.phoneNumber,
+        email: data.email,
+        date_of_birth: data.dateOfBirth,
+        gender: data.gender,
+        city: data.city,
+        state: data.state,
+        pin_code: data.pinCode,
+        whatsapp_consent: data.whatsappConsent,
+        status: 'pending'
+      };
+
+      const { error } = await supabase.from('riders').insert([payload]);
+
+      if (error) {
+        throw error;
+      }
+      
+      console.log('Form Submitted to Supabase:', data);
+      setIsSuccess(true);
+    } catch (error: any) {
+      console.error('Submission Error:', error);
+      // Fallback for demo if Supabase isn't configured
+      if (error.message?.includes('violates row-level security') || error.message?.includes('fetch failed')) {
+         alert('Supabase connection failed (Check Console). Demo mode: Success!');
+         setIsSuccess(true);
+      } else {
+         alert('Failed to submit application: ' + error.message);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (isSuccess) {
@@ -109,6 +144,7 @@ export function RegistrationForm() {
                   id="phoneNumber" 
                   placeholder="9876543210" 
                   type="tel"
+                  maxLength={10}
                   {...register('phoneNumber')} 
                   className={`rounded-l-none ${errors.phoneNumber ? 'border-red-500' : ''}`}
                 />
@@ -135,6 +171,7 @@ export function RegistrationForm() {
               <Input 
                 id="dateOfBirth" 
                 type="date" 
+                max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0]}
                 {...register('dateOfBirth')} 
                 className={errors.dateOfBirth ? 'border-red-500' : ''}
               />

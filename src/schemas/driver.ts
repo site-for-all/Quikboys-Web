@@ -4,13 +4,18 @@ export const driverSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
   lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
   phoneNumber: z.string().regex(/^\d{10}$/, { message: "Phone number must be exactly 10 digits." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Please enter a valid email address." }).refine((val) => {
+    const domain = val.split('@')[1];
+    return domain && domain.includes('.');
+  }, { message: "Email must contain a valid domain (e.g., .com, .in)." }),
   dateOfBirth: z.string().refine((val) => {
-    const date = new Date(val);
-    const ageDiffMs = Date.now() - date.getTime();
-    const ageDate = new Date(ageDiffMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970) >= 18;
-  }, { message: "You must be at least 18 years old." }),
+    const dob = new Date(val);
+    const today = new Date();
+    // Calculate 18 years ago from today
+    const storedDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    // If DOB is after that date, they are younger than 18
+    return dob <= storedDate;
+  }, { message: "You must be at least 18 years old to register." }),
   gender: z.enum(["male", "female", "other"], {
     required_error: "Please select a gender.",
   }),
