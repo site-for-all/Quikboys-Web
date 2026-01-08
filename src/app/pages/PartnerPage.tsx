@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PartnerForm } from '../../components/PartnerForm';
 import {
-  TrendingUp, Users, ShieldCheck, Truck, Clock,
+  Users, Truck,
   CheckCircle2, MapPin, Zap, LayoutGrid, ArrowRight,
   Pizza, ShoppingCart, Activity, Package, Gift
 } from 'lucide-react';

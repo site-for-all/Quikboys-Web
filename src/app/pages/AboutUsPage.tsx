@@ -1,6 +1,6 @@
 
 import { Button } from "../components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, Box, TrendingUp, Leaf, Smartphone } from "lucide-react";
 
 export function AboutUsPage() {

@@ -5,7 +5,7 @@ import { HubCaptainForm } from '../../components/HubCaptainForm';
 import {
   Users, Briefcase, TrendingUp, Shield, Award,
   BarChart, BatteryCharging, UserCheck, Smartphone,
-  MapPin, Clock, School, ArrowDown
+  School, ArrowDown
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
