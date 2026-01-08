@@ -11,6 +11,7 @@ import {
     SelectValue,
 } from "../components/ui/select";
 import { Mail, MessageCircle, Clock } from "lucide-react";
+import { SEO } from "../../components/SEO";
 
 export function ContactPage() {
     const handleSubmit = (e: React.FormEvent) => {
@@ -21,6 +22,12 @@ export function ContactPage() {
 
     return (
         <div className="bg-gray-50 min-h-screen">
+            <SEO
+                title="Contact QuikBoys - Support & Inquiries | Bangalore & Hyderabad"
+                description="Get in touch with QuikBoys. Rider support, business inquiries, and general questions. Active in Bangalore & Hyderabad. Email: support@quikboys.com"
+                keywords="contact quikboys, quikboys support, customer care, rider support, business partnership inquiry, bangalore office, hyderabad office"
+                canonical="https://quikboys.com/contact"
+            />
             {/* Hero */}
             <section className="bg-white border-b border-gray-100 py-16 text-center">
                 <h1 className="text-4xl font-bold text-[#1A2744] mb-2">Contact Us</h1>

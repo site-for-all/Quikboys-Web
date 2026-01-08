@@ -2,12 +2,58 @@
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Zap, Bell, MapPin, Clock, BatteryCharging, Wrench, Leaf, TrendingUp } from "lucide-react";
+import { SEO } from '../../components/SEO';
 
 export function LandingPage() {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <SEO
+        title="QuikBoys - Delivery Partner Jobs & Business Logistics Solutions"
+        description="Join QuikBoys as a delivery partner and earn on every kilometer. Businesses: Get reliable real-time delivery services. Now in Bangalore & Hyderabad. Apply today!"
+        keywords="delivery partner, delivery boy job, logistics service, real-time delivery, bangalore delivery, hyderabad delivery, ev delivery, quikboys"
+        canonical="https://quikboys.com/"
+        ogTitle="QuikBoys - Deliver Smart. Earn More. Return Rich."
+        ogDescription="India's smartest delivery platform. Riders earn on every kilometer. Businesses get real-time tracking. Join the revolution!"
+        ogImage="https://quikboys.com/images/og-home.jpg"
+        ogUrl="https://quikboys.com/"
+        twitterTitle="QuikBoys - Deliver Smart. Earn More. Return Rich."
+        twitterDescription="India's smartest delivery platform. Join as a rider or partner your business today!"
+        twitterImage="https://quikboys.com/images/twitter-home.jpg"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "QuikBoys",
+          "alternateName": "QuikBoys Delivery",
+          "url": "https://quikboys.com",
+          "logo": "https://quikboys.com/images/logo.png",
+          "description": "India's smartest delivery platform offering real-time tracked deliveries for businesses and earning opportunities for delivery partners.",
+          "foundingDate": "2025",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bangalore",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+91-83413-45599",
+              "contactType": "customer service",
+              "email": "support@quikboys.com",
+              "areaServed": "IN",
+              "availableLanguage": ["English", "Hindi", "Kannada", "Telugu"]
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/quikboys",
+            "https://www.instagram.com/quikboys",
+            "https://twitter.com/quikboys",
+            "https://www.facebook.com/quikboys"
+          ]
+        }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gray-50 pt-16 pb-32 lg:pt-32 lg:pb-48">
         <div className="absolute top-0 right-0 -z-10 bg-[#ECFDF5] w-1/2 h-full rounded-l-[100px] opacity-60 hidden lg:block" />

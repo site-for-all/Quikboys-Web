@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { HubCaptainForm } from '../../components/HubCaptainForm';
+import { SEO } from '../../components/SEO';
 import {
   Users, Briefcase, TrendingUp, Shield, Award,
   BarChart, BatteryCharging, UserCheck, Smartphone,
@@ -18,8 +19,100 @@ export default function HubCaptainPage() {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const jobPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "Hub Captain",
+    "description": "Become a Hub Captain at QuikBoys. Lead a team of riders, manage local operations, grow your career. Competitive salary + benefits.",
+    "datePosted": "2026-01-08",
+    "validThrough": "2026-12-31",
+    "employmentType": ["FULL_TIME"],
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "QuikBoys",
+      "sameAs": "https://quikboys.com",
+      "logo": "https://quikboys.com/images/logo.png"
+    },
+    "jobLocation": [
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressRegion": "Karnataka",
+          "addressCountry": "IN"
+        }
+      },
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hyderabad",
+          "addressRegion": "Telangana",
+          "addressCountry": "IN"
+        }
+      }
+    ],
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 25000,
+        "maxValue": 45000,
+        "unitText": "MONTH"
+      }
+    },
+    "qualifications": "Leadership skills, basic computer knowledge, local area knowledge",
+    "responsibilities": "Manage fleet operations, monitor rider performance, ensure timely deliveries, handle escalations",
+    "skills": "Team management, operations, communication, problem solving",
+    "jobBenefits": "Pf, ESI, Health Insurance, Performance Bonus"
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the working hours for a Hub Captain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hub Captains typically work full-time with flexible hours. Hours may vary during peak seasons or special events."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is prior delivery experience mandatory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not mandatory. Experience in logistics, retail operations, or team management is valuable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will I get training?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! All Hub Captains go through a comprehensive training program covering operations, leadership, and our tech platform."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-white pt-16">
+      <SEO
+        title="Hub Captain Jobs | Logistics Team Lead Careers at QuikBoys"
+        description="Become a Hub Captain at QuikBoys. Lead a team of riders, manage local operations, grow your career. Competitive salary + benefits. Apply now in Bangalore & Hyderabad!"
+        keywords="hub captain job, logistics supervisor, delivery manager job, team lead logistics, operations job bangalore, operations job hyderabad"
+        canonical="https://quikboys.com/hub-captain"
+        ogTitle="Hub Captain Careers at QuikBoys - Lead. Manage. Grow."
+        ogDescription="Take charge of local delivery operations. Manage riders, build partnerships, grow your leadership career."
+        ogImage="https://quikboys.com/images/og-hubcaptain.jpg"
+        ogUrl="https://quikboys.com/hub-captain"
+        schema={[jobPostingSchema, faqSchema]}
+      />
 
       {/* Section 1: Hero Section */}
       <section className="bg-[#1A2744] text-white py-20 px-4 md:py-28 relative overflow-hidden">

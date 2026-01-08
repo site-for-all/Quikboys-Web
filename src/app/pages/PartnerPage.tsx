@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PartnerForm } from '../../components/PartnerForm';
+import { SEO } from '../../components/SEO';
 import {
   Users, Truck,
   CheckCircle2, MapPin, Zap, LayoutGrid, ArrowRight,
@@ -17,8 +18,100 @@ export function PartnerPage() {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Delivery Service",
+    "provider": {
+      "@type": "Organization",
+      "name": "QuikBoys"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Bangalore"
+      },
+      {
+        "@type": "City",
+        "name": "Hyderabad"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Delivery Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Food Delivery",
+            "description": "Fast food delivery for restaurants and cloud kitchens"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "E-commerce Delivery",
+            "description": "Same-day delivery for online stores and D2C brands"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Pharmacy Delivery",
+            "description": "Medicine and healthcare product delivery"
+          }
+        }
+      ]
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What areas do you cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We currently operate in Bangalore and Hyderabad. Pan-India expansion is underway."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly can we get started?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most partners are up and running quickly after signing up. Complex integrations may take a few days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer API integration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We have REST APIs for order creation, tracking, and webhooks."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-white pt-16">
+      <SEO
+        title="Delivery Partner for Restaurants & Businesses | QuikBoys Logistics"
+        description="Get reliable delivery services for your business. Real-time tracking, verified riders, transparent pricing. Perfect for restaurants, e-commerce, pharmacy. Partner with QuikBoys today!"
+        keywords="delivery partner for business, restaurant delivery service, ecommerce delivery, hyperlocal delivery, same day delivery bangalore, last mile delivery"
+        canonical="https://quikboys.com/partner-with-us"
+        ogTitle="Partner With QuikBoys - Reliable Delivery for Your Business"
+        ogDescription="Real-time tracking, verified riders, fast delivery. Scale your business with QuikBoys logistics."
+        ogImage="https://quikboys.com/images/og-partner.jpg"
+        ogUrl="https://quikboys.com/partner-with-us"
+        schema={[serviceSchema, faqSchema]}
+      />
 
       {/* Section 1: Hero Section */}
       <section className="bg-[#1A2744] text-white py-20 px-4 md:py-28 relative overflow-hidden">

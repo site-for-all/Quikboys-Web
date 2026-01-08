@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { RegistrationForm } from '../../components/RegistrationForm';
+import { SEO } from '../../components/SEO';
 import {
   Wallet, Truck, MapPin, Zap, Shield, Clock,
   BatteryCharging, Wrench, Leaf, CheckCircle,
@@ -24,8 +25,103 @@ export default function DriverOnboardingPage() {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const jobPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "Delivery Partner",
+    "description": "Join QuikBoys as a delivery partner. Earn on every kilometer with our Hero Return program. Flexible hours, weekly payouts, and EV scooter option available.",
+    "datePosted": "2026-01-08",
+    "validThrough": "2026-12-31",
+    "employmentType": ["FULL_TIME", "PART_TIME", "CONTRACTOR"],
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "QuikBoys",
+      "sameAs": "https://quikboys.com",
+      "logo": "https://quikboys.com/images/logo.png"
+    },
+    "jobLocation": [
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressRegion": "Karnataka",
+          "addressCountry": "IN"
+        }
+      },
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hyderabad",
+          "addressRegion": "Telangana",
+          "addressCountry": "IN"
+        }
+      }
+    ],
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 15000,
+        "maxValue": 50000,
+        "unitText": "MONTH"
+      }
+    },
+    "qualifications": "Valid driving license, Aadhaar Card, PAN Card, Android smartphone",
+    "responsibilities": "Deliver orders to customers, maintain delivery quality, use QuikBoys app for navigation and order management",
+    "skills": "Two-wheeler riding, smartphone usage, customer service, time management",
+    "incentiveCompensation": "Weekly payouts, performance bonuses, zero dead KM earnings, hero return payments",
+    "jobBenefits": "Flexible hours, insurance coverage, EV scooter program for eligible riders"
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I become a QuikBoys delivery partner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Visit quikboys.com/driver-onboarding, fill out the application form with your details, upload your Aadhaar card and driving license, and submit. Our team will verify your documents and contact you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documents are required to join QuikBoys?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You need a valid Aadhaar Card, PAN Card, Driving License, and an Android smartphone with internet connection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need my own vehicle to join QuikBoys?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. QuikBoys offers an EV scooter program for eligible riders who don't have their own vehicle."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
+      <SEO
+        title="Delivery Boy Job in Bangalore & Hyderabad | Join QuikBoys - Earn Daily"
+        description="Apply for delivery partner jobs at QuikBoys. Earn ₹30,000+ monthly, get free EV scooter option, weekly payouts. No experience needed. Join now in Bangalore & Hyderabad!"
+        keywords="delivery boy job, delivery partner job, bike delivery job, delivery job bangalore, delivery job hyderabad, part time delivery, ev scooter delivery job"
+        canonical="https://quikboys.com/driver-onboarding"
+        ogTitle="Delivery Boy Jobs - Join QuikBoys & Earn More"
+        ogDescription="Become a QuikBoys delivery partner. Zero dead kilometers, hero return payments, flexible hours. Apply in 5 minutes!"
+        ogImage="https://quikboys.com/images/og-rider.jpg"
+        ogUrl="https://quikboys.com/driver-onboarding"
+        twitterTitle="Delivery Partner Jobs at QuikBoys"
+        twitterDescription="Earn on every kilometer. Weekly payouts. EV scooter option. Apply now!"
+        schema={[jobPostingSchema, faqSchema]}
+      />
 
       {/* Section 1: Hero Section */}
       <section className="bg-[#1A2744] text-white py-20 px-4 md:py-28 relative overflow-hidden">

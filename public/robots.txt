@@ -1,0 +1,23 @@
+# QuikBoys Robots.txt
+# https://quikboys.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Disallow duplicate content
+Disallow: /*?*
+Disallow: /*.json$
+
+# Allow important resources
+Allow: /images/
+Allow: /*.css
+Allow: /*.js
+
+# Sitemap location
+Sitemap: https://quikboys.com/sitemap.xml

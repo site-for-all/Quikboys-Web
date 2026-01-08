@@ -2,12 +2,19 @@
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Box, TrendingUp, Leaf, Smartphone } from "lucide-react";
+import { SEO } from "../../components/SEO";
 
 export function AboutUsPage() {
     const navigate = useNavigate();
 
     return (
         <div className="bg-white min-h-screen">
+            <SEO
+                title="About QuikBoys - India's Smartest Delivery Platform | Our Story"
+                description="QuikBoys is revolutionizing last-mile delivery in India. Learn about our mission, EV-first approach, and how we're building a rider-centric logistics platform."
+                keywords="quikboys, about quikboys, delivery company india, ev delivery service, sustainable logistics, bangalore logistics company"
+                canonical="https://quikboys.com/about-us"
+            />
             {/* Hero Section */}
             <section className="bg-gray-50 py-20 lg:py-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
