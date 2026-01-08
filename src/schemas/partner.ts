@@ -16,6 +16,8 @@ export const partnerSchema = z.object({
   city: z.string().min(2, { message: "City must be at least 2 characters." }),
   state: z.string().min(2, { message: "Please select a state." }),
   pinCode: z.string().regex(/^\d{6}$/, { message: "Pin code must be exactly 6 digits." }),
+  dailyDeliveries: z.enum(["1-10", "11-50", "51-200", "200+"], { required_error: "Please select estimated deliveries." }),
+  needs: z.string().optional(),
   whatsappConsent: z.boolean().default(false).optional(),
 });
 
@@ -33,9 +35,9 @@ export const indianStates = [
 ];
 
 export const businessTypes = [
-    { value: "restaurant", label: "Restaurant / Cloud Kitchen" },
-    { value: "grocery", label: "Grocery / Supermarket" },
-    { value: "pharmacy", label: "Pharmacy / Medical Store" },
-    { value: "retail", label: "Retail Store" },
-    { value: "other", label: "Other" }
+  { value: "restaurant", label: "Restaurant / Cloud Kitchen" },
+  { value: "grocery", label: "Grocery / Supermarket" },
+  { value: "pharmacy", label: "Pharmacy / Medical Store" },
+  { value: "retail", label: "Retail Store" },
+  { value: "other", label: "Other" }
 ];

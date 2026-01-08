@@ -10,6 +10,8 @@ import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsOfService } from './components/legal/TermsOfService';
 import { RiderAgreement } from './components/legal/RiderAgreement';
 import { CookiePolicy } from './components/legal/CookiePolicy';
+import { AboutUsPage } from './pages/AboutUsPage';
+import { ContactPage } from './pages/ContactPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,6 +35,8 @@ function App() {
             <Route path="/driver-onboarding" element={<DriverOnboardingPage />} />
             <Route path="/hub-captain" element={<HubCaptainPage />} />
             <Route path="/partner-with-us" element={<PartnerPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/rider-agreement" element={<RiderAgreement />} />

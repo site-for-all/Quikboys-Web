@@ -1,72 +1,200 @@
 -- Enable UUID extension
 create extension if not exists "uuid-ossp";
 
--- 1. RIDERS TABLE
-create table if not exists public.riders (
-  id uuid default uuid_generate_v4() primary key,
-  first_name text not null,
-  last_name text not null,
-  phone_number text not null,
-  email text not null,
-  date_of_birth date not null,
-  gender text not null,
-  city text not null,
-  state text not null,
-  pin_code text not null,
-  whatsapp_consent boolean default false,
-  status text default 'pending', -- pending, approved, rejected
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+-- Create riders table
+CREATE TABLE riders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  
+  -- Personal Information
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  phone_number VARCHAR(15) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  date_of_birth DATE NOT NULL,
+  gender VARCHAR(20) NOT NULL,
+  
+  -- Address Fields (NEW)
+  address_line_1 VARCHAR(255) NOT NULL,
+  address_line_2 VARCHAR(255),
+  city VARCHAR(100) NOT NULL,
+  state VARCHAR(100) NOT NULL,
+  pin_code VARCHAR(6) NOT NULL,
+  
+  -- Documents (NEW - Store file URLs from Supabase Storage)
+  aadhaar_card_url TEXT NOT NULL,
+  driving_license_url TEXT NOT NULL,
+  
+  -- Referral System (NEW)
+  referral_code VARCHAR(10) UNIQUE NOT NULL,
+  referred_by VARCHAR(10) REFERENCES riders(referral_code),
+  referral_count INTEGER DEFAULT 0,
+  
+  -- Status & Metadata
+  application_status VARCHAR(20) DEFAULT 'pending',
+  whatsapp_consent BOOLEAN DEFAULT false,
+  ev_program_interest BOOLEAN DEFAULT false,
+  
+  -- Timestamps
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  verified_at TIMESTAMP WITH TIME ZONE
 );
 
--- 2. HUB CAPTAINS TABLE
-create table if not exists public.hub_captains (
-  id uuid default uuid_generate_v4() primary key,
-  first_name text not null,
-  last_name text not null,
-  phone_number text not null,
-  email text not null,
-  date_of_birth date not null,
-  gender text not null,
-  city text not null,
-  state text not null,
-  pin_code text not null,
-  whatsapp_consent boolean default false,
-  resume_url text, -- Store the URL/Path to the file in Storage
-  status text default 'pending',
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+-- Create index for faster lookups
+CREATE INDEX idx_riders_referral_code ON riders(referral_code);
+CREATE INDEX idx_riders_phone ON riders(phone_number);
+CREATE INDEX idx_riders_email ON riders(email);
+CREATE INDEX idx_riders_status ON riders(application_status);
+
+-- Function to generate unique referral code
+CREATE OR REPLACE FUNCTION generate_referral_code()
+RETURNS VARCHAR(10) AS $$
+DECLARE
+  new_code VARCHAR(10);
+  code_exists BOOLEAN;
+BEGIN
+  LOOP
+    -- Generate code: QB- + 6 random alphanumeric characters
+    new_code := 'QB-' || UPPER(SUBSTRING(MD5(RANDOM()::TEXT) FROM 1 FOR 6));
+    
+    -- Check if code already exists
+    SELECT EXISTS(SELECT 1 FROM riders WHERE referral_code = new_code) INTO code_exists;
+    
+    -- Exit loop if code is unique
+    EXIT WHEN NOT code_exists;
+  END LOOP;
+  
+  RETURN new_code;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to auto-generate referral code before insert
+CREATE OR REPLACE FUNCTION set_referral_code()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.referral_code IS NULL OR NEW.referral_code = '' THEN
+    NEW.referral_code := generate_referral_code();
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_set_referral_code
+  BEFORE INSERT ON riders
+  FOR EACH ROW
+  EXECUTE FUNCTION set_referral_code();
+
+-- Trigger to update referral count when someone uses a referral code
+CREATE OR REPLACE FUNCTION increment_referral_count()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.referred_by IS NOT NULL THEN
+    UPDATE riders 
+    SET referral_count = referral_count + 1,
+        updated_at = NOW()
+    WHERE referral_code = NEW.referred_by;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_increment_referral
+  AFTER INSERT ON riders
+  FOR EACH ROW
+  EXECUTE FUNCTION increment_referral_count();
+
+-- Trigger to auto-update updated_at timestamp
+CREATE OR REPLACE FUNCTION update_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_timestamp
+  BEFORE UPDATE ON riders
+  FOR EACH ROW
+  EXECUTE FUNCTION update_timestamp();
+
+-- Enable RLS
+ALTER TABLE riders ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Anyone can insert (for registration)
+CREATE POLICY "Anyone can register"
+ON riders FOR INSERT
+WITH CHECK (true);
+
+-- Policy: Users can view their own data
+CREATE POLICY "Users can view own data"
+ON riders FOR SELECT
+USING (auth.uid()::text = id::text OR auth.role() = 'service_role');
+
+-- Policy: Only admins can update
+CREATE POLICY "Admins can update"
+ON riders FOR UPDATE
+USING (auth.role() = 'service_role');
+
+-- HUB CAPTAINS TABLE (Restored basic structure if needed, or we can omit if not specified in detail by new guide but implied by page 'Hub Captain')
+-- Ideally we should have a table for hub captains too.
+CREATE TABLE hub_captains (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  full_name VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  phone_number VARCHAR(15) NOT NULL UNIQUE,
+  city VARCHAR(100) NOT NULL,
+  resume_url TEXT NOT NULL,
+  why_join TEXT,
+  status VARCHAR(20) DEFAULT 'pending',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- 3. PARTNERS (MERCHANTS) TABLE
-create table if not exists public.partners (
-  id uuid default uuid_generate_v4() primary key,
-  business_name text not null,
-  owner_name text not null,
-  phone_number text not null,
-  email text not null,
-  business_type text not null, -- restaurant, grocery, etc
-  gst_number text,
-  website text,
-  city text not null,
-  state text not null,
-  pin_code text not null,
-  whatsapp_consent boolean default false,
-  status text default 'pending',
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+ALTER TABLE hub_captains ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can apply as hub captain" ON hub_captains FOR INSERT WITH CHECK (true);
+
+-- PARTNERS TABLE (For Partner With Us page)
+CREATE TABLE partners (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  business_name VARCHAR(255) NOT NULL,
+  contact_person VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(15) NOT NULL,
+  business_type VARCHAR(50) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  daily_deliveries VARCHAR(50) NOT NULL,
+  requirements TEXT,
+  website TEXT,
+  status VARCHAR(20) DEFAULT 'pending',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- 4. STORAGE BUCKET setup (You must do this in Supabase Dashboard -> Storage)
--- Create a new public bucket called 'resumes'
+ALTER TABLE partners ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can apply as partner" ON partners FOR INSERT WITH CHECK (true);
 
--- ROW LEVEL SECURITY (RLS) POLICIES
--- Create policies to allow INSERT for anyone (anon) but SELECT only for admins
-alter table public.riders enable row level security;
-alter table public.hub_captains enable row level security;
-alter table public.partners enable row level security;
+-- STORAGE BUCKETS SETUP --
 
--- Policy: Allow anyone to insert (register)
-create policy "Enable insert for everyone" on public.riders for insert with check (true);
-create policy "Enable insert for everyone" on public.hub_captains for insert with check (true);
-create policy "Enable insert for everyone" on public.partners for insert with check (true);
+-- Create 'rider-documents' bucket for Aadhaar/License
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('rider-documents', 'rider-documents', true)
+ON CONFLICT (id) DO NOTHING;
 
--- Policy: Allow only service_role (backend/admin) to select/view
--- (By default, if no select policy exists, anon users cannot see data, which is what we want for privacy)
+-- Create 'resumes' bucket for Hub Captains
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('resumes', 'resumes', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- Storage Policies for 'rider-documents'
+-- Allow public write (anyone can upload for now, ideally restrict but need auth)
+CREATE POLICY "Public Uploads rider-documents" ON storage.objects
+FOR INSERT WITH CHECK (bucket_id = 'rider-documents');
+
+-- Allow public read
+CREATE POLICY "Public Read rider-documents" ON storage.objects
+FOR SELECT USING (bucket_id = 'rider-documents');
+
+-- Storage Policies for 'resumes'
+CREATE POLICY "Public Uploads resumes" ON storage.objects
+FOR INSERT WITH CHECK (bucket_id = 'resumes');
+
+CREATE POLICY "Public Read resumes" ON storage.objects
+FOR SELECT USING (bucket_id = 'resumes');

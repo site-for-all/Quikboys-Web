@@ -19,9 +19,12 @@ export const driverSchema = z.object({
   gender: z.enum(["male", "female", "other"], {
     required_error: "Please select a gender.",
   }),
+  addressLine1: z.string().min(5, { message: "Address must be at least 5 characters." }),
+  addressLine2: z.string().optional(),
   city: z.string().min(2, { message: "City must be at least 2 characters." }),
   state: z.string().min(2, { message: "Please select a state." }),
   pinCode: z.string().regex(/^\d{6}$/, { message: "Pin code must be exactly 6 digits." }),
+  referralCode: z.string().optional(),
   whatsappConsent: z.boolean().default(false).optional(),
 });
 
