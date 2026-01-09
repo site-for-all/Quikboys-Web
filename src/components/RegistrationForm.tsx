@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../app/components/ui/card';
 import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
-import { Loader2, CheckCircle, Upload } from 'lucide-react';
+import { Loader2, CheckCircle, Upload, Copy, Share2 } from 'lucide-react';
 
 import { supabase } from '../lib/supabase';
 
@@ -139,30 +139,54 @@ export function RegistrationForm() {
     }
   }
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(referralCode);
+    alert('Referral Code Copied!');
+  };
+
+  const shareOnWhatsApp = () => {
+    const text = `Hey! I just joined QuikBoys as a Delivery Partner 🚀 Earn on every kilometer and get weekly payouts! Use my referral code: ${referralCode}. Apply here: https://quikboys.com/driver-onboarding #QuikBoys #DeliveryPartner #EarnMore`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   if (isSuccess) {
     return (
       <Card className="max-w-3xl mx-auto shadow-xl border-green-200 bg-green-50/50">
-        <CardContent className="pt-10 pb-10 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <CardContent className="pt-10 pb-10 text-center space-y-6">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="text-3xl font-bold text-[#1A2744] mb-4">Registration Successful!</h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-lg mx-auto">
-            Thank you for registering with QuikBoys. Our team will review your application and contact you within 24-48 hours.
-          </p>
+
+          <div>
+            <h2 className="text-3xl font-bold text-[#0A2540] mb-2">Registration Successful!</h2>
+            <p className="text-xl text-gray-700">
+              Thank you for registering with QuikBoys.<br />
+              Our team will review your application and contact you within 24-48 hours.
+            </p>
+          </div>
 
           {referralCode && (
-            <div className="bg-white p-6 rounded-xl border border-dashed border-gray-300 mb-8 max-w-md mx-auto">
-              <p className="text-sm text-gray-500 mb-2 uppercase tracking-wide font-semibold">Your Referral Code</p>
-              <div className="text-3xl font-mono font-bold text-[#DC2626] tracking-wider mb-2">{referralCode}</div>
-              <p className="text-sm text-gray-600">Share this code with friends to earn rewards when they join!</p>
+            <div className="bg-[#ECFDF5] border border-green-200 p-6 rounded-xl max-w-md mx-auto">
+              <p className="text-sm font-bold text-green-800 mb-4 uppercase tracking-wider">🎁 Your Referral Code</p>
+              <div className="bg-white border-2 border-dashed border-green-300 rounded-lg p-4 mb-4">
+                <span className="text-3xl font-mono font-bold text-[#0A2540] tracking-widest">{referralCode}</span>
+              </div>
+              <p className="text-sm text-green-700 mb-0">Share this code with friends to earn rewards when they join!</p>
             </div>
           )}
 
-          <Button
-            onClick={() => window.location.href = '/'}
-            className="bg-[#1A2744] hover:bg-[#1A2744]/90 text-white min-w-[200px]"
-          >
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button onClick={copyToClipboard} variant="outline" className="border-green-600 text-green-700 hover:bg-green-50">
+              <Copy className="w-4 h-4 mr-2" /> Copy Code
+            </Button>
+            <Button onClick={shareOnWhatsApp} className="bg-[#25D366] hover:bg-[#128C7E] text-white">
+              <Share2 className="w-4 h-4 mr-2" /> Share on WhatsApp
+            </Button>
+          </div>
+
+          <p className="text-xs text-gray-500 mt-4">⚠️ Save your referral code! Take a screenshot or copy it now.</p>
+
+          <Button onClick={() => window.location.href = '/'} variant="link" className="text-gray-500">
             Back to Home
           </Button>
         </CardContent>

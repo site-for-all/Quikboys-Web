@@ -16,6 +16,7 @@ CREATE TABLE hub_operations_applications (
   full_name VARCHAR(200) NOT NULL,
   phone_number VARCHAR(15) NOT NULL UNIQUE,
   email VARCHAR(255) NOT NULL UNIQUE,
+  date_of_birth DATE NOT NULL,
   gender VARCHAR(20) NOT NULL,
   
   -- Address Fields
@@ -26,6 +27,9 @@ CREATE TABLE hub_operations_applications (
   pin_code VARCHAR(6) NOT NULL,
   
   -- Professional Information
+  current_job_title VARCHAR(100),
+  years_of_experience VARCHAR(50) NOT NULL,
+  has_two_wheeler BOOLEAN NOT NULL,
   why_join TEXT, -- Motivation (Optional)
   
   -- Documents
@@ -35,6 +39,7 @@ CREATE TABLE hub_operations_applications (
   referral_code VARCHAR(15) UNIQUE NOT NULL, -- Format: QB-HUB-XXXXXX
   referred_by VARCHAR(15), -- Optional referrer code
   referral_count INTEGER DEFAULT 0,
+  whatsapp_consent BOOLEAN DEFAULT FALSE,
   
   -- Meta
   application_status VARCHAR(20) DEFAULT 'pending',
