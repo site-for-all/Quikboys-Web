@@ -5,7 +5,7 @@ import { Footer } from './components/Footer';
 import { LandingPage } from './components/LandingPage';
 import { PartnerPage } from './pages/PartnerPage';
 import DriverOnboardingPage from './pages/DriverOnboardingPage';
-import HubCaptainPage from './pages/HubCaptainPage';
+import HubOperationsPage from './pages/HubOperationsPage';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsOfService } from './components/legal/TermsOfService';
 import { RiderAgreement } from './components/legal/RiderAgreement';
@@ -33,7 +33,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/driver-onboarding" element={<DriverOnboardingPage />} />
-            <Route path="/hub-captain" element={<HubCaptainPage />} />
+
+            <Route path="/hub-operations" element={<HubOperationsPage />} />
             <Route path="/partner-with-us" element={<PartnerPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/contact" element={<ContactPage />} />

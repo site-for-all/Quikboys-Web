@@ -52,8 +52,8 @@ export function Header() {
                 <DropdownMenuItem onClick={() => navigate('/driver-onboarding')} className="cursor-pointer">
                   Ride With Us
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/hub-captain')} className="cursor-pointer">
-                  Hub Captain
+                <DropdownMenuItem onClick={() => navigate('/hub-operations')} className="cursor-pointer">
+                  Hub Operations
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -71,9 +71,9 @@ export function Header() {
             <CountrySelector />
             <Button
               className="bg-[#1A2744] hover:bg-[#0A1830] text-white"
-              onClick={() => navigate('/hub-captain')}
+              onClick={() => navigate('/hub-operations')}
             >
-              Join as Hub Captain
+              Join Hub Operations
             </Button>
             <Button
               className="bg-[#DC2626] hover:bg-[#B91C1C] text-white"
@@ -114,8 +114,8 @@ export function Header() {
                     <button onClick={() => handleNav('/driver-onboarding')} className="text-left text-gray-600 font-medium">
                       Ride With Us
                     </button>
-                    <button onClick={() => handleNav('/hub-captain')} className="text-left text-gray-600 font-medium">
-                      Hub Captain
+                    <button onClick={() => handleNav('/hub-executive')} className="text-left text-gray-600 font-medium">
+                      Hub Executive
                     </button>
                   </AccordionContent>
                 </AccordionItem>

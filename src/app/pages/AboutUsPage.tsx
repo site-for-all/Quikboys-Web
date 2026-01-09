@@ -147,10 +147,10 @@ export function AboutUsPage() {
                     </Button>
                     <Button
                         variant="outline"
-                        onClick={() => navigate('/hub-captain')}
+                        onClick={() => navigate('/hub-executive')}
                         className="border-[#1A2744] text-[#1A2744] hover:bg-[#1A2744] hover:text-white text-lg px-8 py-6 h-auto"
                     >
-                        Become a Hub Captain <ArrowRight className="ml-2 w-5 h-5" />
+                        Become a Hub Executive <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                 </div>
             </section>

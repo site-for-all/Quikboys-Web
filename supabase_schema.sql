@@ -3,7 +3,6 @@
 
 -- 1. CLEANUP (Drop tables if they exist to start fresh)
 DROP TABLE IF EXISTS riders CASCADE;
-DROP TABLE IF EXISTS hub_captains CASCADE;
 DROP TABLE IF EXISTS partners CASCADE;
 
 -- 2. ENABLE EXTENSIONS
@@ -34,20 +33,8 @@ CREATE TABLE riders (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   verified_at TIMESTAMP WITH TIME ZONE
-);
-
--- 4. CREATE HUB CAPTAINS TABLE
-CREATE TABLE hub_captains (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  full_name VARCHAR(100) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  phone_number VARCHAR(15) NOT NULL UNIQUE,
-  city VARCHAR(100) NOT NULL,
-  resume_url TEXT NOT NULL,
-  why_join TEXT,
-  status VARCHAR(20) DEFAULT 'pending',
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+-- 4. CREATE HUB EXECUTIVES TABLE
+-- MOVED TO hub_executives_schema.sql
 
 -- 5. CREATE PARTNERS TABLE
 CREATE TABLE partners (
@@ -67,7 +54,6 @@ CREATE TABLE partners (
 
 -- 6. DISABLE RLS (To allow public access without policy headaches)
 ALTER TABLE riders DISABLE ROW LEVEL SECURITY;
-ALTER TABLE hub_captains DISABLE ROW LEVEL SECURITY;
 ALTER TABLE partners DISABLE ROW LEVEL SECURITY;
 
 -- 7. RECREATE FUNCTIONS & TRIGGERS

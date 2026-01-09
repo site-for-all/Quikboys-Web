@@ -268,32 +268,32 @@ export function LandingPage() {
               </div>
             </div>
 
-            {/* For Hub Captains */}
+            {/* For Hub Operations */}
             <div className="bg-white rounded-3xl p-8 lg:p-10 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-2xl font-bold text-[#1A2744] mb-8 flex items-center gap-3">
                 <span className="w-8 h-8 bg-[#1A2744] text-white rounded-full flex items-center justify-center text-sm font-bold">H</span>
-                For Hub Captains
+                Hub Operations
               </h3>
               <div className="space-y-8 relative before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-0.5 before:bg-gray-100">
                 <div className="relative pl-12">
                   <span className="absolute left-0 top-0 w-10 h-10 bg-white border-2 border-[#1A2744] rounded-full flex items-center justify-center font-bold text-[#1A2744] z-10">1</span>
-                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">Apply Now</h4>
-                  <p className="text-gray-600">Submit your details and management experience.</p>
+                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">3 Roles Available</h4>
+                  <p className="text-gray-600">Hub Manager, Hub Executive, or Hub Captain.</p>
                 </div>
                 <div className="relative pl-12">
                   <span className="absolute left-0 top-0 w-10 h-10 bg-white border-2 border-[#1A2744] rounded-full flex items-center justify-center font-bold text-[#1A2744] z-10">2</span>
-                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">Training</h4>
-                  <p className="text-gray-600">Get trained on our fleet management systems.</p>
+                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">Build Career</h4>
+                  <p className="text-gray-600">Lead riders, manage logistics, and grow with us.</p>
                 </div>
                 <div className="relative pl-12">
                   <span className="absolute left-0 top-0 w-10 h-10 bg-white border-2 border-[#1A2744] rounded-full flex items-center justify-center font-bold text-[#1A2744] z-10">3</span>
-                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">Lead & Earn</h4>
-                  <p className="text-gray-600">Manage your hub, lead riders, and grow your career.</p>
+                  <h4 className="text-xl font-bold text-[#1A2744] mb-2">Competitive Pay</h4>
+                  <p className="text-gray-600">Salary + Performance Incentives from day one.</p>
                 </div>
               </div>
               <div className="mt-10">
-                <Button onClick={() => navigate('/hub-captain')} className="w-full bg-[#1A2744] hover:bg-[#0A1830] text-white py-6 text-lg font-semibold">
-                  Become a Captain
+                <Button onClick={() => navigate('/hub-operations')} className="w-full bg-[#1A2744] hover:bg-[#0A1830] text-white py-6 text-lg font-semibold">
+                  Explore Roles
                 </Button>
               </div>
             </div>

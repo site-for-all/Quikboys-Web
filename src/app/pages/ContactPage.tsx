@@ -79,7 +79,7 @@ export function ContactPage() {
                                 <p className="text-sm text-[#DC2626] mt-2 font-medium">partners@quikboys.com</p>
                             </div>
                             <div className="p-4 bg-white border border-gray-100 rounded-lg hover:border-[#DC2626] transition-colors cursor-default">
-                                <h3 className="font-bold text-[#1A2744]">For Hub Captains</h3>
+                                <h3 className="font-bold text-[#1A2744]">For Hub Executives</h3>
                                 <p className="text-sm text-gray-500 mt-1">Roles and application queries.</p>
                                 <p className="text-sm text-[#DC2626] mt-2 font-medium">careers@quikboys.com</p>
                             </div>
@@ -121,7 +121,7 @@ export function ContactPage() {
                                     <SelectContent>
                                         <SelectItem value="rider">Rider</SelectItem>
                                         <SelectItem value="business">Business Partner</SelectItem>
-                                        <SelectItem value="captain">Hub Captain</SelectItem>
+                                        <SelectItem value="executive">Hub Executive</SelectItem>
                                         <SelectItem value="customer">Customer</SelectItem>
                                         <SelectItem value="other">Other</SelectItem>
                                     </SelectContent>
