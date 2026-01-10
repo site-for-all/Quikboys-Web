@@ -11,6 +11,7 @@ import { TermsOfService } from './components/legal/TermsOfService';
 import { RiderAgreement } from './components/legal/RiderAgreement';
 import { CookiePolicy } from './components/legal/CookiePolicy';
 import { AboutUsPage } from './pages/AboutUsPage';
+import CareersPage from './pages/CareersPage';
 import { ContactPage } from './pages/ContactPage';
 
 function ScrollToTop() {
@@ -36,6 +37,7 @@ function App() {
 
             <Route path="/hub-operations" element={<HubOperationsPage />} />
             <Route path="/partner-with-us" element={<PartnerPage />} />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -150,10 +150,28 @@ export default function DriverOnboardingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-[#CBD5E1] max-w-3xl mx-auto mb-10"
+            className="text-lg text-[#CBD5E1] max-w-3xl mx-auto mb-8"
           >
-            Join the revolution. Earn competitive payouts, get priority routes home, and never waste a kilometer.
+            Join the revolution. No education needed. No experience required. Earn on every kilometer — even on your way home.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="flex flex-wrap justify-center gap-3 mb-10"
+          >
+            {[
+              { icon: "🎓", text: "No Education Required" },
+              { icon: "🌟", text: "Freshers Welcome" },
+              { icon: "🛵", text: "Free EV Option" },
+              { icon: "💳", text: "Weekly Payouts" }
+            ].map((badge, i) => (
+              <span key={i} className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium text-white flex items-center gap-2">
+                <span>{badge.icon}</span> {badge.text}
+              </span>
+            ))}
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -171,83 +189,202 @@ export default function DriverOnboardingPage() {
         </div>
       </section>
 
-      {/* Section 2: Why Riders Choose QuikBoys */}
+      {/* Section 2: EV Program Highlight (Moved Up & Redesigned) */}
+      <section className="py-20 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              className="inline-block bg-[#DC2626] text-white px-6 py-2 rounded-full text-base font-bold shadow-lg shadow-red-500/30 mb-6 uppercase tracking-wider"
+            >
+              🔥 First Come, First Served!
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1A2744] mb-4">
+              Get an EV Scooter — <span className="text-[#00D26A]">ZERO Investment</span>
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Want to ride electric? Eligible riders get an electric scooter with absolutely no upfront cost, no EMIs, and no interest — ever.
+            </p>
+          </div>
+
+          {/* 6 Key Benefits Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {[
+              { emoji: "💰", title: "₹0 Investment", desc: "No down payment. No deposit. No hidden charges.", badge: "ZERO COST" },
+              { emoji: "📅", title: "₹0 EMI Forever", desc: "No monthly installments. No interest charges. No loan.", badge: "NO EMI" },
+              { emoji: "⛽", title: "₹0 Fuel Expense", desc: "Electric = No petrol. Save ₹5,000/mo on fuel.", badge: "SAVE ₹5K/MONTH" },
+              { emoji: "🔧", title: "Free Servicing", desc: "All repairs and maintenance handled by us.", badge: "100% FREE" },
+              { emoji: "🔋", title: "Free Charging", desc: "Access our charging network at no extra cost.", badge: "UNLIMITED" },
+              { emoji: "💵", title: "100% Your Earnings", desc: "No vehicle deductions. Everything you earn is yours.", badge: "MAXIMUM INCOME" }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white/80 backdrop-blur-sm border border-green-100 rounded-2xl p-6 hover:shadow-xl transition-all relative overflow-hidden group">
+                <div className="absolute top-4 right-4 bg-green-100 text-[#00D26A] text-xs font-bold px-2 py-1 rounded-lg">
+                  {item.badge}
+                </div>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.emoji}</div>
+                <h3 className="text-xl font-bold text-[#1A2744] mb-2">{item.title}</h3>
+                <p className="text-gray-600 font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Eligibility & Steps */}
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+              <h3 className="text-2xl font-bold text-[#1A2744] mb-6 flex items-center gap-2">
+                <span className="bg-[#1A2744] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">?</span>
+                Who Can Get an EV Scooter?
+              </h3>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Age 18 years or older",
+                  "Valid Driving License (two-wheeler)",
+                  "Aadhaar Card & PAN Card",
+                  "Android smartphone with internet",
+                  "Willing to work minimum 6 hours/day",
+                  "Available at least 6 days/week"
+                ].map((req, i) => (
+                  <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                    <CheckCircle className="w-5 h-5 text-[#00D26A] flex-shrink-0" />
+                    {req}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-8">
+                <h4 className="font-bold text-yellow-800 mb-1 flex items-center gap-2">
+                  📋 PRIORITY ALLOCATION
+                </h4>
+                <p className="text-yellow-700 text-sm">
+                  EV scooters are allocated on a <strong>First Come, First Served</strong> basis. Apply early to secure your EV scooter!
+                </p>
+              </div>
+
+              <Button
+                onClick={() => {
+                  document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-[#00D26A] hover:bg-[#00b359] text-white text-lg h-14 font-bold shadow-lg shadow-green-500/20"
+              >
+                🛵 I Want a FREE EV Scooter — Apply Now
+              </Button>
+              <p className="text-center text-xs text-gray-500 mt-2 font-medium">
+                ⚡ First Come, First Served! No investment. No EMI.
+              </p>
+            </div>
+
+            {/* Steps Visual */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-[#1A2744] mb-6 text-center lg:text-left">Get Your EV in 4 Steps</h3>
+              {[
+                { step: "1", title: "Apply Online", desc: "Fill the form below and check 'I want an EV Scooter'" },
+                { step: "2", title: "Get Verified", desc: "We verify your documents and check eligibility" },
+                { step: "3", title: "Complete Training", desc: "Short training on EV handling and app usage" },
+                { step: "4", title: "Start Earning", desc: "Collect your scooter and begin deliveries!" }
+              ].map((s, i) => (
+                <div key={i} className="flex items-center gap-6 bg-white/60 p-4 rounded-xl border border-white/50">
+                  <div className="w-12 h-12 bg-[#1A2744] text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                    {s.step}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#1A2744] text-lg">{s.title}</h4>
+                    <p className="text-gray-600">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* No Education Banner */}
+      <section className="bg-[#EFF6FF] border-y border-blue-100 py-10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full text-blue-600 mb-4">
+            <span className="text-3xl">🎓</span>
+          </div>
+          <h2 className="text-3xl font-bold text-[#1A2744] mb-3">NO EDUCATION REQUIRED</h2>
+          <p className="text-xl text-blue-800 font-medium max-w-2xl mx-auto">
+            8th pass, 10th pass, 12th pass, graduate — ALL are welcome! <br />
+            Your skills matter, not your degree.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 3: Why Riders Choose QuikBoys (Re-added) */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-12">Why Riders Choose QuikBoys</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              icon: Truck,
+              icon: "🎓",
+              title: "Education Not Required",
+              desc: "8th pass to graduate — everyone can join. Your skills matter, not your degree.",
+              color: "text-blue-600",
+              msg: "No Degree Needed"
+            },
+            {
+              icon: "🌟",
+              title: "No Experience Needed",
+              desc: "Never done delivery before? No problem! We'll train you.",
+              color: "text-[#DC2626]",
+              msg: "Freshers Welcome"
+            },
+            {
+              icon: "🚛",
               title: "Zero Dead KM",
-              desc: "Our smart system ensures you never ride empty. Every single kilometer you travel earns you money—no exceptions."
+              desc: "Every single kilometer you travel earns you money—no exceptions.",
+              color: "text-[#1A2744]",
+              msg: "Earn More"
             },
             {
-              icon: MapPin, // Home icon equivalent
+              icon: "🏠",
               title: "Hero Return",
-              desc: "Get paid deliveries on your route back home at the end of your shift. Turn your commute into earnings."
+              desc: "Get paid deliveries on your route back home at the end of your shift.",
+              color: "text-[#1A2744]",
+              msg: "Paid Commute"
             },
             {
-              icon: Wallet,
-              title: "High Monthly Earnings",
-              desc: "Earn competitive per-delivery rates with weekly payouts and performance bonuses."
-            },
-            {
-              icon: Zap,
-              title: "Express Corridors",
-              desc: "Earn extra on high-demand routes. Our AI identifies surge areas so you can maximize your earnings."
-            },
-            {
-              icon: Shield,
-              title: "Insurance Benefits",
-              desc: "Comprehensive accidental insurance for you and your family. Ride with complete peace of mind."
-            },
-            {
-              icon: Clock,
-              title: "Work Your Way",
-              desc: "Full-time or part-time—you decide. No minimum hours, no pressure. Be your own boss."
+              icon: "💳",
+              title: "Weekly Payouts",
+              desc: "Money in your bank every Monday. No delays.",
+              color: "text-[#1A2744]",
+              msg: "Fast Payment"
             }
           ].map((item, index) => (
             <Card key={index} className="border-t-4 border-t-[#38BDF8] hover:shadow-lg transition-all transform hover:-translate-y-1">
               <CardContent className="p-6">
-                <div className="bg-blue-50 w-12 h-12 rounded-full flex items-center justify-center text-[#1A2744] mb-4">
-                  <item.icon className="w-6 h-6" />
+                <div className="flex justify-between items-start mb-4">
+                  <div className="text-4xl">{item.icon}</div>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-gray-100 rounded-md ${item.color}`}>
+                    {item.msg}
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold text-[#1A2744] mb-2">{item.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
-        </div>
-      </section>
-
-      {/* Section 3: EV Program Highlight */}
-      <section className="py-20 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="bg-white/80 text-[#00D26A] px-4 py-1 rounded-full text-sm font-bold border border-[#00D26A]/20 inline-block mb-4">
-              🌱 GREEN INITIATIVE
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A2744] mb-4">EV Scooters for Eligible Delivery Partners</h2>
-            <p className="text-xl text-gray-700">No vehicle? No problem. We provide electric scooters to eligible riders.</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: Leaf, title: "EV Scooter", desc: "Get a fully-maintained electric scooter when you qualify" },
-              { icon: BatteryCharging, title: "Zero Fuel Costs", desc: "Save on petrol costs every month" },
-              { icon: Wrench, title: "Free Maintenance", desc: "We handle all repairs and servicing" },
-              { icon: Wallet, title: "Higher Take-Home", desc: "Lower costs = more money in your pocket" }
-            ].map((benefit, idx) => (
-              <div key={idx} className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 text-center">
-                <benefit.icon className="w-10 h-10 text-[#00D26A] mx-auto mb-4" />
-                <h3 className="font-bold text-[#1A2744] mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
+          <Card className="border-t-4 border-t-[#00D26A] bg-[#ECFDF5] hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div className="text-4xl">🛵</div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-green-100 text-[#00D26A] rounded-md">
+                  Apply Now
+                </span>
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold text-[#1A2744] mb-2">Free EV Scooter</h3>
+              <p className="text-gray-600 leading-relaxed">No vehicle? Get an EV scooter with zero investment, zero EMI.</p>
+            </CardContent>
+          </Card>
         </div>
       </section>
+
+
 
       {/* Section 4: Requirement */}
       <section className="py-20 px-4 max-w-5xl mx-auto">
@@ -258,17 +395,17 @@ export default function DriverOnboardingPage() {
             { icon: User, label: "Age", value: "Must be 18 years or older" },
             { icon: Smartphone, label: "Smartphone", value: "Android device with internet" },
             { icon: FileText, label: "Aadhaar Card", value: "Valid government-issued ID" },
-            { icon: CreditCard, label: "PAN Card", value: "Required for tax compliance" },
             { icon: Truck, label: "Driving License", value: "Valid two-wheeler license" },
             { icon: Wallet, label: "Bank Account", value: "For weekly direct deposits" },
+            { icon: "🎓", label: "Education", value: "NO education requirement — everyone welcome!", highlight: true },
           ].map((req, i) => (
-            <div key={i} className="flex items-center p-4 bg-white rounded-lg border border-gray-100 shadow-sm">
-              <div className="text-[#00D26A] mr-4">
-                <CheckCircle className="w-6 h-6" />
+            <div key={i} className={`flex items-center p-4 bg-white rounded-lg border ${req.highlight ? 'border-green-200 bg-green-50' : 'border-gray-100'} shadow-sm`}>
+              <div className={`${req.highlight ? 'text-green-600 text-2xl' : 'text-[#00D26A]'} mr-4`}>
+                {typeof req.icon === 'string' ? req.icon : <req.icon className="w-6 h-6" />}
               </div>
               <div>
                 <h4 className="font-bold text-[#1A2744]">{req.label}</h4>
-                <p className="text-sm text-gray-500">{req.value}</p>
+                <p className={`text-sm ${req.highlight ? 'text-green-700 font-bold' : 'text-gray-500'}`}>{req.value}</p>
               </div>
             </div>
           ))}
@@ -279,6 +416,42 @@ export default function DriverOnboardingPage() {
           <p className="text-[#1A2744]">
             Don't have a vehicle? <span className="font-semibold">Check if you're eligible for our EV Scooter Program!</span>
           </p>
+        </div>
+      </section>
+
+      {/* Referral Program Section */}
+      <section className="py-20 bg-[#FFFBEB]">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="bg-amber-100 rounded-3xl p-8 md:p-12 border border-amber-200 flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <div className="inline-block bg-[#F59E0B] text-white px-4 py-1 rounded-full text-sm font-bold">
+                🎁 REFER & EARN
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#78350F]">
+                Earn Bonus For Every Friend You Refer!
+              </h2>
+              <p className="text-lg text-[#92400E]">
+                Know someone looking for a delivery job? Refer them to QuikBoys an you BOTH get rewards!
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2 rounded-full text-[#F59E0B] font-bold">1</div>
+                  <p className="text-[#92400E] font-medium pt-1">Apply below and get your unique referral code</p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2 rounded-full text-[#F59E0B] font-bold">2</div>
+                  <p className="text-[#92400E] font-medium pt-1">Share the code with your friends on WhatsApp</p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-white p-2 rounded-full text-[#F59E0B] font-bold">3</div>
+                  <p className="text-[#92400E] font-medium pt-1">When they complete 50 deliveries, you both get a cash bonus!</p>
+                </div>
+              </div>
+            </div>
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="text-[100px] leading-none select-none">🎁</div>
+            </div>
+          </div>
         </div>
       </section>
 

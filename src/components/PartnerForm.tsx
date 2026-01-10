@@ -31,6 +31,7 @@ export function PartnerForm() {
       dailyDeliveries: undefined,
       needs: '',
       whatsappConsent: false,
+      isNotONDC: false,
     },
   });
 
@@ -278,6 +279,24 @@ export function PartnerForm() {
               placeholder="e.g. specialized handling, specific hours..."
               {...register('needs')}
             />
+          </div>
+
+          <div className="flex items-start space-x-2 pt-2">
+            <Checkbox
+              id="isNotONDC"
+              checked={watch('isNotONDC')}
+              onCheckedChange={(checked) => setValue('isNotONDC', checked as boolean)}
+              className={errors.isNotONDC ? 'border-red-500' : ''}
+            />
+            <div className="grid gap-1.5 leading-none">
+              <Label
+                htmlFor="isNotONDC"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                I confirm that my business is <span className="font-bold text-red-600">NOT</span> currently part of the ONDC network <span className="text-red-500">*</span>
+              </Label>
+              {errors.isNotONDC && <p className="text-red-500 text-xs">{errors.isNotONDC.message}</p>}
+            </div>
           </div>
 
           <div className="flex items-center space-x-2 pt-2">

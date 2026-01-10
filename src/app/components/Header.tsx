@@ -58,6 +58,9 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
+            <Link to="/careers" className="text-[#1A2744] font-medium hover:text-[#DC2626] transition-colors">
+              Careers
+            </Link>
             <Link to="/partner-with-us" className="text-[#1A2744] font-medium hover:text-[#DC2626] transition-colors">
               Partner with Us
             </Link>
@@ -114,13 +117,16 @@ export function Header() {
                     <button onClick={() => handleNav('/driver-onboarding')} className="text-left text-gray-600 font-medium">
                       Ride With Us
                     </button>
-                    <button onClick={() => handleNav('/hub-executive')} className="text-left text-gray-600 font-medium">
-                      Hub Executive
+                    <button onClick={() => handleNav('/hub-operations')} className="text-left text-gray-600 font-medium">
+                      Hub Operations
                     </button>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
 
+              <Link to="/careers" onClick={() => setMobileMenuOpen(false)} className="text-[#1A2744] font-medium text-lg">
+                Careers
+              </Link>
               <Link to="/partner-with-us" onClick={() => setMobileMenuOpen(false)} className="text-[#1A2744] font-medium text-lg">
                 Partner with Us
               </Link>
@@ -134,6 +140,12 @@ export function Header() {
                 <span className="text-gray-500 font-medium">Country</span>
                 <CountrySelector />
               </div>
+              <Button
+                className="bg-[#1A2744] hover:bg-[#0A1830] text-white w-full"
+                onClick={() => handleNav('/hub-operations')}
+              >
+                Join Hub Operations
+              </Button>
               <Button
                 className="bg-[#DC2626] hover:bg-[#B91C1C] text-white w-full"
                 onClick={() => handleNav('/driver-onboarding')}

@@ -279,6 +279,21 @@ export function PartnerPage() {
           </div>
 
           <div className="shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
+            <div className="bg-[#FFFBEB] border-l-4 border-[#F59E0B] p-4 mb-8 rounded-r-lg shadow-sm">
+              <div className="flex gap-3">
+                <span className="text-2xl">⚠️</span>
+                <div>
+                  <h3 className="font-bold text-[#92400E] mb-1">ELIGIBILITY CRITERIA</h3>
+                  <p className="text-[#B45309] text-sm leading-relaxed">
+                    Businesses currently registered and operating on ONDC (Open Network for Digital Commerce)
+                    are <strong>NOT</strong> eligible to partner with QuikBoys at this time.
+                    <br className="mt-2" />
+                    If you have questions about eligibility, contact us at <a href="mailto:partners@quikboys.com" className="underline">partners@quikboys.com</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="p-1 md:p-8 bg-white">
               <PartnerForm />
             </div>
@@ -296,7 +311,8 @@ export function PartnerPage() {
             { q: "Do you offer API integration?", a: "Yes! We have REST APIs for order creation, tracking, and webhooks." },
             { q: "What's the minimum order volume?", a: "No minimum! Whether you have 5 orders a day or 500, we're happy to partner with you." },
             { q: "How does pricing work?", a: "We offer flexible pricing—pay per delivery or monthly plans. Contact us for a custom quote." },
-            { q: "Can you handle COD (Cash on Delivery)?", a: "Absolutely! Our riders are trained to handle COD orders. Funds are settled to your account promptly." }
+            { q: "Can you handle COD (Cash on Delivery)?", a: "Absolutely! Our riders are trained to handle COD orders. Funds are settled to your account promptly." },
+            { q: "Why can't ONDC businesses partner with QuikBoys?", a: "Currently, we're focusing on building dedicated partnerships with businesses outside the ONDC network to maintain service quality and provide personalized support. If you have questions, please contact partners@quikboys.com" }
           ].map((faq, i) => (
             <AccordionItem key={i} value={`partner-faq-${i}`}>
               <AccordionTrigger className="font-medium text-[#1A2744]">{faq.q}</AccordionTrigger>

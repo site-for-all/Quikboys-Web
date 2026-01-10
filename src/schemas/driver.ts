@@ -25,6 +25,7 @@ export const driverSchema = z.object({
   state: z.string().min(2, { message: "Please select a state." }),
   pinCode: z.string().regex(/^\d{6}$/, { message: "Pin code must be exactly 6 digits." }),
   referralCode: z.string().optional(),
+  interestedInEV: z.boolean().default(false).optional(),
   whatsappConsent: z.boolean().default(false).optional(),
 });
 

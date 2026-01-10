@@ -19,6 +19,9 @@ export const partnerSchema = z.object({
   dailyDeliveries: z.enum(["1-10", "11-50", "51-200", "200+"], { required_error: "Please select estimated deliveries." }),
   needs: z.string().optional(),
   whatsappConsent: z.boolean().default(false).optional(),
+  isNotONDC: z.boolean().refine(val => val === true, {
+    message: "Please confirm your business is not part of ONDC to proceed."
+  }),
 });
 
 export type PartnerFormValues = z.infer<typeof partnerSchema>;

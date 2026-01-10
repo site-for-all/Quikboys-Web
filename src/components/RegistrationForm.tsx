@@ -34,6 +34,7 @@ export function RegistrationForm() {
       state: '',
       pinCode: '',
       referralCode: '',
+      interestedInEV: false,
       whatsappConsent: false,
     },
   });
@@ -101,6 +102,7 @@ export function RegistrationForm() {
         aadhaar_card_url: aadhaarUrl,
         driving_license_url: licenseUrl,
         referred_by: data.referralCode || null,
+        interested_in_ev: data.interestedInEV,
         whatsapp_consent: data.whatsappConsent,
         status: 'pending' // Note: DB column is application_status based on schema but older schema used status. Check schema again. New schema: application_status.
       };
@@ -398,6 +400,29 @@ export function RegistrationForm() {
               placeholder="Enter referral code (if any)"
               {...register('referralCode')}
             />
+          </div>
+
+          {/* Prominent EV Checkbox */}
+          <div className="pt-4 pb-2">
+            <div className="flex items-start bg-green-50 border border-green-200 p-4 rounded-lg hover:bg-green-100 transition-colors">
+              <Checkbox
+                id="interestedInEV"
+                checked={watch('interestedInEV')}
+                onCheckedChange={(checked) => setValue('interestedInEV', checked as boolean)}
+                className="mt-1 border-green-500 data-[state=checked]:bg-green-600 data-[state=checked]:text-white"
+              />
+              <div className="ml-3">
+                <Label
+                  htmlFor="interestedInEV"
+                  className="font-bold text-[#1A2744] cursor-pointer"
+                >
+                  I want a FREE EV Scooter from QuikBoys 🛵
+                </Label>
+                <p className="text-sm text-green-700 mt-1">
+                  Check this box to apply for our Zero Investment, Zero EMI EV Program.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center space-x-2 pt-2">
