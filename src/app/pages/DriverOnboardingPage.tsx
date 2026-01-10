@@ -213,10 +213,7 @@ export default function DriverOnboardingPage() {
             {[
               { emoji: "💰", title: "₹0 Investment", desc: "No down payment. No deposit. No hidden charges.", badge: "ZERO COST" },
               { emoji: "📅", title: "₹0 EMI Forever", desc: "No monthly installments. No interest charges. No loan.", badge: "NO EMI" },
-              { emoji: "⛽", title: "₹0 Fuel Expense", desc: "Electric = No petrol. Save ₹5,000/mo on fuel.", badge: "SAVE ₹5K/MONTH" },
-              { emoji: "🔧", title: "Free Servicing", desc: "All repairs and maintenance handled by us.", badge: "100% FREE" },
-              { emoji: "🔋", title: "Free Charging", desc: "Access our charging network at no extra cost.", badge: "UNLIMITED" },
-              { emoji: "💵", title: "100% Your Earnings", desc: "No vehicle deductions. Everything you earn is yours.", badge: "MAXIMUM INCOME" }
+              { emoji: "⛽", title: "₹0 Fuel Expense", desc: "Electric = No petrol. Save ₹5,000/mo on fuel.", badge: "SAVE ₹5K/MONTH" }
             ].map((item, idx) => (
               <div key={idx} className="bg-white/80 backdrop-blur-sm border border-green-100 rounded-2xl p-6 hover:shadow-xl transition-all relative overflow-hidden group">
                 <div className="absolute top-4 right-4 bg-green-100 text-[#00D26A] text-xs font-bold px-2 py-1 rounded-lg">
