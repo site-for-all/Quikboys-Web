@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import { RegistrationForm } from '../../components/RegistrationForm';
 import { SEO } from '../../components/SEO';
 import {
-  Wallet, Truck, MapPin, Zap, Shield, Clock,
-  BatteryCharging, Wrench, Leaf, CheckCircle,
-  Smartphone, CreditCard, FileText, User, ArrowDown, HelpCircle,
+  Wallet, Truck, CheckCircle,
+  Smartphone, FileText, User, ArrowDown, HelpCircle,
   FileCheck, Rocket
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
