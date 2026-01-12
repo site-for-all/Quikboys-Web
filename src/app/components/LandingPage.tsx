@@ -3,9 +3,26 @@ import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Zap, Bell, MapPin, Clock, BatteryCharging, Wrench, Leaf, TrendingUp } from "lucide-react";
 import { SEO } from '../../components/SEO';
+import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export function LandingPage() {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isQuikBoys, setIsQuikBoys] = useState(true);
+
+  const evSlides = [
+    "/images/ev-slide-1.png",
+    "/images/ev-slide-2.png",
+    "/images/ev-slide-3.png"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % evSlides.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -61,6 +78,9 @@ export function LandingPage() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border border-green-200 text-[#00D26A] font-bold text-sm shadow-sm md:mb-0">
+                ⚡ Get an EV Scooter @ ₹0 Investment
+              </div>
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-[#1A2744] leading-[1.1]">
                 Deliver Smart. <br />
                 Earn More. <br />
@@ -99,42 +119,105 @@ export function LandingPage() {
               </div>
             </div>
 
-            {/* Visual Element - Earnings Card */}
+            {/* Visual Element - Hero Return Simulator */}
             <div className="relative mx-auto w-full max-w-[500px]">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#38BDF8]/20 rounded-full blur-2xl" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#00D26A]/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#DC2626]/20 rounded-full blur-2xl" />
 
-              <div className="bg-white rounded-3xl shadow-2xl p-6 border border-gray-100 relative z-10 transform transition-transform hover:scale-[1.02]">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <p className="text-gray-500 text-sm font-medium">Today's Earnings</p>
-                    <h3 className="text-4xl font-bold text-[#1A2744]">₹1,850</h3>
-                  </div>
-                  <div className="bg-[#ECFDF5] px-4 py-2 rounded-full flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-[#00D26A] rounded-full animate-pulse" />
-                    <span className="text-[#00D26A] font-bold text-sm">Live</span>
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 relative z-10">
+                {/* Header / Toggle */}
+                <div className="bg-gray-50 p-6 border-b border-gray-100">
+                  <h3 className="text-lg font-bold text-[#1A2744] mb-4 text-center">Return Trip Home 🏠</h3>
+                  <div className="flex bg-gray-200 p-1 rounded-xl relative">
+                    <div className="w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-gray-500 transition-colors" onClick={() => setIsQuikBoys(false)}>
+                      Other Apps
+                    </div>
+                    <div className="w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-[#DC2626] transition-colors" onClick={() => setIsQuikBoys(true)}>
+                      QuikBoys
+                    </div>
+                    <motion.div
+                      className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-sm"
+                      animate={{ x: isQuikBoys ? "100%" : "0%" }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                    <div className="bg-[#DC2626]/10 p-3 rounded-lg text-[#DC2626]">
-                      <TrendingUp size={20} />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-[#1A2744]">Hero Return Active</p>
-                      <p className="text-sm text-gray-500">Earning on return trip home</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                    <div className="bg-[#38BDF8]/10 p-3 rounded-lg text-[#38BDF8]">
-                      <Zap size={20} />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-[#1A2744]">Express Corridor</p>
-                      <p className="text-sm text-gray-500">Optimized route • +20% faster</p>
-                    </div>
-                  </div>
+                {/* Simulation Content */}
+                <div className="p-8">
+                  <AnimatePresence mode="wait">
+                    {isQuikBoys ? (
+                      <motion.div
+                        key="quikboys"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="space-y-6"
+                      >
+                        {/* Route Visualization */}
+                        <div className="flex items-center justify-between text-sm font-medium text-gray-500 mb-2">
+                          <span>Drop Location</span>
+                          <span className="text-[#00D26A] font-bold">New Order!</span>
+                          <span>Home</span>
+                        </div>
+                        <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-[#00D26A] to-gray-200 w-full" />
+                        </div>
+
+                        {/* Stats */}
+                        <div className="bg-[#ECFDF5] border border-[#00D26A]/20 rounded-xl p-4 flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <div className="bg-[#00D26A] text-white p-2 rounded-lg">
+                              <TrendingUp size={20} />
+                            </div>
+                            <div>
+                              <p className="text-sm text-[#065F46]">Return Trip</p>
+                              <p className="font-bold text-[#064E3B]">Earning Active</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-[#00D26A]">+₹120</p>
+                            <p className="text-xs text-[#065F46]">Profit</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="others"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        className="space-y-6"
+                      >
+                        {/* Route Visualization */}
+                        <div className="flex items-center justify-between text-sm font-medium text-gray-500 mb-2">
+                          <span>Drop Location</span>
+                          <span className="text-red-400">Empty Return</span>
+                          <span>Home</span>
+                        </div>
+                        <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-red-300 to-gray-200 w-full opacity-50" />
+                        </div>
+
+                        {/* Stats */}
+                        <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <div className="bg-red-100 text-red-600 p-2 rounded-lg">
+                              <BatteryCharging size={20} className="rotate-180" />
+                            </div>
+                            <div>
+                              <p className="text-sm text-red-800">Return Trip</p>
+                              <p className="font-bold text-red-900">Fuel Cost</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-red-600">-₹40</p>
+                            <p className="text-xs text-red-800">Loss</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
@@ -143,7 +226,7 @@ export function LandingPage() {
       </section>
 
       {/* Real-Time Delivery Section */}
-      <section className="py-24 bg-white">
+      < section className="py-24 bg-white" >
         <div className="container mx-auto px-4 max-w-7xl text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-[#1A2744] mb-6">Real-Time Delivery. <br className="hidden md:block" /> Every Order Tracked.</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">Experience logistics transparency like never before. From pickup to doorstep, every moment is visible.</p>
@@ -182,10 +265,10 @@ export function LandingPage() {
             <p className="text-gray-600">AI-powered delivery time predictions that customers can trust. Reliability that builds business.</p>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* EV Program Section */}
-      <section className="py-24 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5]">
+      < section className="py-24 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5]" >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
@@ -221,24 +304,49 @@ export function LandingPage() {
               </Button>
             </div>
 
-            <div className="lg:w-1/2 relative">
-              {/* Placeholder for EV Scooter Image - Creating a CSS shape representation or use a generating image later */}
-              <div className="aspect-square rounded-3xl bg-white/40 border border-white/50 backdrop-blur-xl p-8 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#00D26A]/10 to-transparent" />
-                {/* Abstract representation of green energy/scooter */}
-                <div className="text-center">
-                  <Leaf className="w-32 h-32 text-[#00D26A] mx-auto mb-4 opacity-80" />
-                  <h3 className="text-2xl font-bold text-[#1A2744]">Green Fleet</h3>
-                  <p className="text-gray-600">Eco-friendly delivery network</p>
+            <div className="lg:w-1/2 relative h-[400px]">
+              <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/50 shadow-2xl">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentSlide}
+                    src={evSlides[currentSlide]}
+                    alt="QuikBoys EV Fleet"
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                  />
+                </AnimatePresence>
+
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00D26A]/80 to-transparent flex flex-col justify-end p-8">
+                  <div className="text-white drop-shadow-md">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Leaf className="text-white fill-white" size={24} />
+                      <span className="font-bold text-lg">Green Fleet</span>
+                    </div>
+                    <p className="text-white/90 font-medium">Zero Emissions. 100% Savings.</p>
+                  </div>
+                </div>
+
+                {/* Slider Indicators */}
+                <div className="absolute bottom-6 right-6 flex gap-2 z-10">
+                  {evSlides.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`h-2 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-white' : 'w-2 bg-white/50'}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* NEW: Work Part-Time Section */}
-      <section className="py-24 bg-[#FFFBEB]">
+      < section className="py-24 bg-[#FFFBEB]" >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="bg-amber-100 rounded-[2.5rem] p-8 md:p-16 border border-amber-200 shadow-xl overflow-hidden relative">
             {/* Background Decorations */}
@@ -335,10 +443,10 @@ export function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* How It Works Section */}
-      <section className="py-24 bg-white">
+      < section className="py-24 bg-white" >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1A2744] mb-4">Built Different. Built Better.</h2>
@@ -437,10 +545,10 @@ export function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Careers CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1A2744] to-[#2D3F65] text-white relative overflow-hidden">
+      < section className="py-20 bg-gradient-to-r from-[#1A2744] to-[#2D3F65] text-white relative overflow-hidden" >
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#DC2626]/10 rounded-full blur-3xl pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
@@ -475,10 +583,10 @@ export function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Final CTA Banner */}
-      <section className="py-20 bg-[#1A2744]">
+      < section className="py-20 bg-[#1A2744]" >
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Join the QuikBoys Revolution?</h2>
           <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
@@ -500,7 +608,7 @@ export function LandingPage() {
             </Button>
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }
