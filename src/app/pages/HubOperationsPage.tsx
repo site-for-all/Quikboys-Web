@@ -8,12 +8,12 @@ import { HubOperationsForm } from '../../components/HubOperationsForm';
 // FAQ Data
 const faqs = [
   {
-    q: "What's the difference between Hub Manager, Hub Executive, and Hub Captain?",
-    a: "Hub Manager manages riders and hub operations at the central hub. Hub Executive oversees multiple Hub Captains across vendor locations. Hub Captain manages the delivery fleet directly at vendor sites."
+    q: "What's the difference between Cluster Manager, Hub Executive, and Hub Captain?",
+    a: "Cluster Manager manages riders and hub operations at the central hub. Hub Executive oversees multiple Hub Captains across vendor locations. Hub Captain manages the delivery fleet directly at vendor sites."
   },
   {
     q: "Can I switch between roles later?",
-    a: "Yes! Based on your performance and interest, you can transition to different roles. Many Hub Captains have grown into Hub Executives and Hub Managers."
+    a: "Yes! Based on your performance and interest, you can transition to different roles. Many Hub Captains have grown into Hub Executives and Cluster Managers."
   },
   {
     q: "What are the working hours?",
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Do I need prior experience?",
-    a: "Hub Captain roles welcome freshers (0-1 year). Hub Manager requires 0-2 years, and Hub Executive requires 1-3 years. Skills and attitude matter most."
+    a: "Hub Captain roles welcome freshers (0-1 year). Cluster Manager requires 0-2 years, and Hub Executive requires 1-3 years. Skills and attitude matter most."
   },
   {
     q: "Will I receive training?",
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "Is a two-wheeler mandatory?",
-    a: "A two-wheeler is required for Hub Executives due to field visits. For Hub Managers and Hub Captains, it's preferred but not mandatory."
+    a: "A two-wheeler is required for Hub Executives due to field visits. For Cluster Managers and Hub Captains, it's preferred but not mandatory."
   }
 ];
 
@@ -48,7 +48,7 @@ export default function HubOperationsPage() {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     "title": "Hub Operations - Multiple Roles (Manager, Executive, Captain)",
-    "description": "Join QuikBoys Hub Operations team. Roles available: Hub Manager, Hub Executive, Hub Captain.",
+    "description": "Join QuikBoys Hub Operations team. Roles available: Cluster Manager, Hub Executive, Hub Captain.",
     "datePosted": "2026-01-09",
     "validThrough": "2026-12-31",
     "employmentType": "FULL_TIME",
@@ -67,8 +67,8 @@ export default function HubOperationsPage() {
   return (
     <div className="bg-white min-h-screen">
       <Helmet>
-        <title>Hub Operations Jobs - Hub Manager, Executive & Captain | QuikBoys Careers</title>
-        <meta name="description" content="Join QuikBoys Hub Operations team. Three exciting roles: Hub Manager, Hub Executive, Hub Captain. Apply now in Bangalore & Hyderabad!" />
+        <title>Hub Operations Jobs - Cluster Manager, Executive & Captain | QuikBoys Careers</title>
+        <meta name="description" content="Join QuikBoys Hub Operations team. Three exciting roles: Cluster Manager, Hub Executive, Hub Captain. Apply now in Bangalore & Hyderabad!" />
         <meta name="keywords" content="hub operations job, hub manager job, hub executive job, hub captain job, logistics careers" />
         <link rel="canonical" href="https://quikboys.com/hub-operations" />
         <script type="application/ld+json">{JSON.stringify(jobPostingSchema)}</script>
@@ -105,12 +105,12 @@ export default function HubOperationsPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Hub Manager */}
+            {/* Cluster Manager */}
             <div className="bg-white border rounded-2xl p-8 hover:shadow-xl transition-all group">
               <div className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Users className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-2xl font-bold text-[#1A2744] mb-2">Hub Manager</h3>
+              <h3 className="text-2xl font-bold text-[#1A2744] mb-2">Cluster Manager</h3>
               <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-4">Operations Leadership</span>
               <p className="text-gray-600 mb-6">Be the backbone of hub operations. Manage riders, track metrics, and ensure smooth functioning.</p>
               <ul className="space-y-3 mb-8 text-gray-600 text-sm">
@@ -118,7 +118,7 @@ export default function HubOperationsPage() {
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Monitor performance & attendance</li>
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Ensure hub targets are met</li>
               </ul>
-              <Button onClick={scrollToForm} variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">Apply as Hub Manager</Button>
+              <Button onClick={scrollToForm} variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">Apply as Cluster Manager</Button>
             </div>
 
             {/* Hub Executive */}
@@ -166,7 +166,7 @@ export default function HubOperationsPage() {
               <thead>
                 <tr className="bg-[#1A2744] text-white">
                   <th className="p-4 text-left rounded-tl-xl">Aspect</th>
-                  <th className="p-4 text-left">Hub Manager</th>
+                  <th className="p-4 text-left">Cluster Manager</th>
                   <th className="p-4 text-left">Hub Executive</th>
                   <th className="p-4 text-left rounded-tr-xl">Hub Captain</th>
                 </tr>

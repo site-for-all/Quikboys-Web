@@ -173,7 +173,7 @@ export function HubOperationsForm() {
                 <SelectValue placeholder="Select the role you're applying for" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="hub_manager">Hub Manager</SelectItem>
+                <SelectItem value="cluster_manager">Cluster Manager</SelectItem>
                 <SelectItem value="hub_executive">Hub Executive</SelectItem>
                 <SelectItem value="hub_captain">Hub Captain</SelectItem>
               </SelectContent>

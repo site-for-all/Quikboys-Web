@@ -386,7 +386,7 @@ export function LandingPage() {
                 <div className="relative pl-12">
                   <span className="absolute left-0 top-0 w-10 h-10 bg-white border-2 border-[#1A2744] rounded-full flex items-center justify-center font-bold text-[#1A2744] z-10">1</span>
                   <h4 className="text-xl font-bold text-[#1A2744] mb-2">3 Roles Available</h4>
-                  <p className="text-gray-600">Hub Manager, Hub Executive, or Hub Captain.</p>
+                  <p className="text-gray-600">Cluster Manager, Hub Executive, or Hub Captain.</p>
                 </div>
                 <div className="relative pl-12">
                   <span className="absolute left-0 top-0 w-10 h-10 bg-white border-2 border-[#1A2744] rounded-full flex items-center justify-center font-bold text-[#1A2744] z-10">2</span>

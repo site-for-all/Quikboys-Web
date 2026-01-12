@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const hubOperationsSchema = z.object({
-  role: z.enum(["hub_manager", "hub_executive", "hub_captain"], {
+  role: z.enum(["cluster_manager", "hub_executive", "hub_captain"], {
     required_error: "Please select a role.",
   }),
   fullName: z.string().min(2, "Name must be at least 2 characters"),
