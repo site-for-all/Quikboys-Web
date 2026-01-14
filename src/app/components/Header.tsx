@@ -32,6 +32,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
+            <img src="/images/omlvs-logo.png" alt="OMLVS Logo" className="h-10 sm:h-12 w-auto" />
             <img src="/logo.png" alt="QuikBoys Logo" className="h-10 sm:h-12 w-auto" />
           </Link>
 
