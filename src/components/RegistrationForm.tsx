@@ -11,7 +11,7 @@ import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
 import { Loader2, CheckCircle, Upload, Copy, Share2 } from 'lucide-react';
 
-import { supabase } from '../lib/supabase';
+import { submitDriverApplication, DeliveryApiError } from '../lib/delivery-api';
 
 export function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,12 +47,6 @@ export function RegistrationForm() {
     }
   };
 
-  async function uploadFile(file: File, path: string) {
-    const { data, error } = await supabase.storage.from('rider-documents').upload(path, file);
-    if (error) throw error;
-    return data.path;
-  }
-
   async function onSubmit(data: DriverFormValues) {
     setIsSubmitting(true);
     try {
@@ -62,79 +56,50 @@ export function RegistrationForm() {
         return;
       }
 
-      // Upload files
-      const timestamp = Date.now();
-      const aadhaarPath = `${data.phoneNumber}/aadhaar_${timestamp}_${aadhaarFile.name}`;
-      const licensePath = `${data.phoneNumber}/license_${timestamp}_${licenseFile.name}`;
+      // Submit to NestJS backend API
+      const response = await submitDriverApplication(
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          phoneNumber: data.phoneNumber,
+          email: data.email,
+          dateOfBirth: data.dateOfBirth,
+          gender: data.gender,
+          addressLine1: data.addressLine1,
+          addressLine2: data.addressLine2 || undefined,
+          city: data.city,
+          state: data.state,
+          pinCode: data.pinCode,
+          referredBy: data.referralCode || undefined,
+          evProgramInterest: data.interestedInEV,
+          whatsappConsent: data.whatsappConsent,
+        },
+        aadhaarFile,
+        licenseFile
+      );
 
-      // Try uploading (might fail if bucket doesn't exist/public policies not set, handled in catch)
-      // For demo purposes, if upload fails we might mock it or show alert
-      let aadhaarUrl = "";
-      let licenseUrl = "";
-
-      try {
-        await uploadFile(aadhaarFile, aadhaarPath);
-        await uploadFile(licenseFile, licensePath);
-
-        const { data: aadhaarData } = supabase.storage.from('rider-documents').getPublicUrl(aadhaarPath);
-        const { data: licenseData } = supabase.storage.from('rider-documents').getPublicUrl(licensePath);
-        aadhaarUrl = aadhaarData.publicUrl;
-        licenseUrl = licenseData.publicUrl;
-      } catch (e) {
-        console.warn("File upload failed (likely bucket missing), using mock URLs for demo", e);
-        aadhaarUrl = "mock_url_aadhaar";
-        licenseUrl = "mock_url_license";
-      }
-
-      // Basic data transformation
-      const payload = {
-        first_name: data.firstName,
-        last_name: data.lastName,
-        phone_number: data.phoneNumber,
-        email: data.email,
-        date_of_birth: data.dateOfBirth,
-        gender: data.gender,
-        address_line_1: data.addressLine1,
-        address_line_2: data.addressLine2,
-        city: data.city,
-        state: data.state,
-        pin_code: data.pinCode,
-        aadhaar_card_url: aadhaarUrl,
-        driving_license_url: licenseUrl,
-        referred_by: data.referralCode || null,
-        interested_in_ev: data.interestedInEV,
-        whatsapp_consent: data.whatsappConsent,
-        status: 'pending' // Note: DB column is application_status based on schema but older schema used status. Check schema again. New schema: application_status.
-      };
-
-      // Correct payload keys to match new schema
-      const dbPayload = {
-        ...payload,
-        application_status: 'pending',
-        // Remove 'status' if I included it by mistake
-      };
-      // @ts-ignore
-      delete dbPayload.status;
-
-      const { data: insertedData, error } = await supabase.from('riders').insert([dbPayload]).select();
-
-      if (error) {
-        throw error;
-      }
-
-      if (insertedData && insertedData[0]) {
-        setReferralCode(insertedData[0].referral_code);
-      }
-
-      setIsSuccess(true);
-    } catch (error: any) {
-      console.error('Submission Error:', error);
-      if (error.message?.includes('violates row-level security') || error.message?.includes('fetch failed')) {
-        alert('Supabase connection failed (Check Console). Demo mode: Success!');
+      if (response.success && response.data) {
+        setReferralCode(response.data.referralCode);
         setIsSuccess(true);
-        setReferralCode('QB-DEMO12');
       } else {
-        alert('Failed to submit application: ' + error.message);
+        throw new Error(response.message || 'Failed to submit application');
+      }
+    } catch (error: unknown) {
+      console.error('Submission Error:', error);
+
+      if (error instanceof DeliveryApiError) {
+        if (error.statusCode === 409) {
+          alert('This phone number or email is already registered. Please use different details or contact support.');
+        } else if (error.statusCode === 400) {
+          alert('Invalid data: ' + error.message);
+        } else if (error.statusCode === 0) {
+          // Network error - could offer fallback or retry
+          alert('Unable to connect to server. Please check your internet connection and try again.');
+        } else {
+          alert('Failed to submit application: ' + error.message);
+        }
+      } else {
+        alert('Failed to submit application: ' + (error instanceof Error ? error.message : 'Unknown error'));
       }
     } finally {
       setIsSubmitting(false);
