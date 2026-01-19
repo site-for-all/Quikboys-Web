@@ -5,7 +5,11 @@
  * Used for driver registration and other authentication-related operations.
  */
 
-const API_BASE_URL = import.meta.env.VITE_DELIVERY_API_URL || 'http://localhost:3000/api/v1';
+// In production, use relative URL to leverage Vercel proxy (avoids CORS issues)
+// In development, use the environment variable or localhost
+const API_BASE_URL = import.meta.env.PROD
+  ? '/api/v1'
+  : (import.meta.env.VITE_DELIVERY_API_URL || 'http://localhost:3000/api/v1');
 
 /**
  * Registration data interface matching the backend WebRegistrationDto
