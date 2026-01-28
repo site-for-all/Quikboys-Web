@@ -307,20 +307,16 @@ export function LandingPage() {
               </Button>
             </div>
 
-            <div className="lg:w-1/2 relative h-[400px]">
+            <div className="lg:w-1/2 relative h-[300px] sm:h-[350px] md:h-[400px]">
               <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/50 shadow-2xl">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentSlide}
-                    src={evSlides[currentSlide]}
+                {evSlides.map((slide, idx) => (
+                  <img
+                    key={idx}
+                    src={slide}
                     alt="QuikBoys EV Fleet"
-                    className="w-full h-full object-cover"
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${idx === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                   />
-                </AnimatePresence>
+                ))}
 
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00D26A]/80 to-transparent flex flex-col justify-end p-8">

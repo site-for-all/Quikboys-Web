@@ -178,7 +178,7 @@ export function RegistrationForm() {
               <Label htmlFor="firstName">First Name <span className="text-red-500">*</span></Label>
               <Input
                 id="firstName"
-                placeholder="Enter your first name"
+                placeholder="First name"
                 {...register('firstName')}
                 className={errors.firstName ? 'border-red-500' : ''}
               />
@@ -188,7 +188,7 @@ export function RegistrationForm() {
               <Label htmlFor="lastName">Last Name <span className="text-red-500">*</span></Label>
               <Input
                 id="lastName"
-                placeholder="Enter your last name"
+                placeholder="Last name"
                 {...register('lastName')}
                 className={errors.lastName ? 'border-red-500' : ''}
               />
@@ -206,7 +206,7 @@ export function RegistrationForm() {
                 </span>
                 <Input
                   id="phoneNumber"
-                  placeholder="9876543210"
+                  placeholder="Phone number"
                   type="tel"
                   maxLength={10}
                   {...register('phoneNumber')}
@@ -220,7 +220,7 @@ export function RegistrationForm() {
               <Input
                 id="email"
                 type="email"
-                placeholder="your.email@example.com"
+                placeholder="Email address"
                 {...register('email')}
                 className={errors.email ? 'border-red-500' : ''}
               />
@@ -262,7 +262,7 @@ export function RegistrationForm() {
             <Label htmlFor="addressLine1">Address Line 1 <span className="text-red-500">*</span></Label>
             <Input
               id="addressLine1"
-              placeholder="House/Flat No., Building Name, Street"
+              placeholder="House/Flat No., Street"
               {...register('addressLine1')}
               className={errors.addressLine1 ? 'border-red-500' : ''}
             />
@@ -272,7 +272,7 @@ export function RegistrationForm() {
             <Label htmlFor="addressLine2">Address Line 2 (Optional)</Label>
             <Input
               id="addressLine2"
-              placeholder="Landmark, Area"
+              placeholder="Landmark (optional)"
               {...register('addressLine2')}
             />
           </div>
@@ -283,7 +283,7 @@ export function RegistrationForm() {
               <Label htmlFor="city">City <span className="text-red-500">*</span></Label>
               <Input
                 id="city"
-                placeholder="Enter city"
+                placeholder="City"
                 {...register('city')}
                 className={errors.city ? 'border-red-500' : ''}
               />
@@ -309,7 +309,7 @@ export function RegistrationForm() {
               <Label htmlFor="pinCode">Pin Code <span className="text-red-500">*</span></Label>
               <Input
                 id="pinCode"
-                placeholder="City Pincode"
+                placeholder="Pin code"
                 maxLength={6}
                 {...register('pinCode')}
                 className={errors.pinCode ? 'border-red-500' : ''}
@@ -362,7 +362,7 @@ export function RegistrationForm() {
             <Label htmlFor="referralCode">Referral Code (Optional)</Label>
             <Input
               id="referralCode"
-              placeholder="Enter referral code (if any)"
+              placeholder="Referral code"
               {...register('referralCode')}
             />
           </div>

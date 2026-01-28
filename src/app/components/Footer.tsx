@@ -11,7 +11,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
-              <img src="/logo.png" alt="QuikBoys Logo" className="h-12 w-auto" />
+              <img src="/images/omlvs-quikboys-logo.png" alt="OMLVS QuikBoys Logo" className="h-12 w-auto" />
             </Link>
             <p className="text-gray-400 leading-relaxed">
               India's smartest logistics network. Delivering happiness, one verified kilometer at a time.

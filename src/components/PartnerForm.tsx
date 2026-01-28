@@ -122,7 +122,7 @@ export function PartnerForm() {
               <Label htmlFor="businessName">Business Name <span className="text-red-500">*</span></Label>
               <Input
                 id="businessName"
-                placeholder="e.g. Tasty Bites point"
+                placeholder="Your business name"
                 {...register('businessName')}
                 className={errors.businessName ? 'border-red-500' : ''}
               />
@@ -151,7 +151,7 @@ export function PartnerForm() {
               <Label htmlFor="ownerName">Owner Name <span className="text-red-500">*</span></Label>
               <Input
                 id="ownerName"
-                placeholder="Enter owner full name"
+                placeholder="Full name"
                 {...register('ownerName')}
                 className={errors.ownerName ? 'border-red-500' : ''}
               />
@@ -161,7 +161,7 @@ export function PartnerForm() {
               <Label htmlFor="gstNumber">GST Number <span className="text-gray-400 font-normal">(Optional)</span></Label>
               <Input
                 id="gstNumber"
-                placeholder="GSTIN..."
+                placeholder="22AAAAA0000A1Z5"
                 {...register('gstNumber')}
                 className={errors.gstNumber ? 'border-red-500' : ''}
               />
@@ -173,7 +173,7 @@ export function PartnerForm() {
             <Label htmlFor="website">Company Website <span className="text-gray-400 font-normal">(Optional)</span></Label>
             <Input
               id="website"
-              placeholder="https://yourbusiness.com"
+              placeholder="https://"
               type="url"
               {...register('website')}
               className={errors.website ? 'border-red-500' : ''}
@@ -191,7 +191,7 @@ export function PartnerForm() {
                 </span>
                 <Input
                   id="phoneNumber"
-                  placeholder="9876543210"
+                  placeholder="Phone number"
                   type="tel"
                   maxLength={10}
                   {...register('phoneNumber')}
@@ -205,7 +205,7 @@ export function PartnerForm() {
               <Input
                 id="email"
                 type="email"
-                placeholder="business@example.com"
+                placeholder="Email address"
                 {...register('email')}
                 className={errors.email ? 'border-red-500' : ''}
               />
@@ -248,7 +248,7 @@ export function PartnerForm() {
               <Label htmlFor="pinCode">Pin Code <span className="text-red-500">*</span></Label>
               <Input
                 id="pinCode"
-                placeholder="123456"
+                placeholder="Pin code"
                 maxLength={6}
                 {...register('pinCode')}
                 className={errors.pinCode ? 'border-red-500' : ''}
@@ -276,7 +276,7 @@ export function PartnerForm() {
             <Label htmlFor="needs">Tell us about your delivery needs</Label>
             <Input
               id="needs"
-              placeholder="e.g. specialized handling, specific hours..."
+              placeholder="Any specific requirements"
               {...register('needs')}
             />
           </div>

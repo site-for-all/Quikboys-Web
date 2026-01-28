@@ -189,14 +189,14 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Section 2: EV Program Highlight (Moved Up & Redesigned) */}
-      <section className="py-20 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-b from-[#ECFDF5] to-[#D1FAE5] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
-              className="inline-block bg-[#DC2626] text-white px-6 py-2 rounded-full text-base font-bold shadow-lg shadow-red-500/30 mb-6 uppercase tracking-wider"
+              className="inline-block bg-[#DC2626] text-white px-6 py-2 rounded-full text-base font-bold shadow-lg shadow-red-500/30 mb-4 md:mb-6 uppercase tracking-wider"
             >
               🔥 First Come, First Served!
             </motion.div>
@@ -209,7 +209,7 @@ export default function DriverOnboardingPage() {
           </div>
 
           {/* 6 Key Benefits Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-16">
             {[
               { emoji: "💰", title: "₹0 Investment", desc: "No down payment. No deposit. No hidden charges.", badge: "ZERO COST" },
               { emoji: "📅", title: "₹0 EMI Forever", desc: "No monthly installments. No interest charges. No loan.", badge: "NO EMI" },
@@ -226,7 +226,7 @@ export default function DriverOnboardingPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Eligibility & Steps */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
               <h3 className="text-2xl font-bold text-[#1A2744] mb-6 flex items-center gap-2">
@@ -311,8 +311,8 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Section 3: Why Riders Choose QuikBoys (Re-added) */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-12">Why Riders Choose QuikBoys</h2>
+      <section className="py-12 md:py-20 px-4 max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-8 md:mb-12">Why Riders Choose QuikBoys</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -383,10 +383,10 @@ export default function DriverOnboardingPage() {
 
 
       {/* Section 4: Requirement */}
-      <section className="py-20 px-4 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-12">What You Need to Join</h2>
+      <section className="py-12 md:py-20 px-4 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-8 md:mb-12">What You Need to Join</h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-10">
           {[
             { icon: User, label: "Age", value: "Must be 18 years or older" },
             { icon: Smartphone, label: "Smartphone", value: "Android device with internet" },
@@ -416,9 +416,9 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Referral Program Section */}
-      <section className="py-20 bg-[#FFFBEB]">
+      <section className="py-12 md:py-20 bg-[#FFFBEB]">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="bg-amber-100 rounded-3xl p-8 md:p-12 border border-amber-200 flex flex-col md:flex-row items-center gap-12">
+          <div className="bg-amber-100 rounded-3xl p-6 md:p-12 border border-amber-200 flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="flex-1 space-y-6">
               <div className="inline-block bg-[#F59E0B] text-white px-4 py-1 rounded-full text-sm font-bold">
                 🎁 REFER & EARN
@@ -452,11 +452,11 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Section 5: How It Works */}
-      <section className="py-20 bg-white border-y border-gray-100">
+      <section className="py-12 md:py-20 bg-white border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-16">Start Earning in 3 Simple Steps</h2>
+          <h2 className="text-3xl font-bold text-[#1E293B] text-center mb-8 md:mb-16">Start Earning in 3 Simple Steps</h2>
 
-          <div className="grid md:grid-cols-3 gap-12 relative">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
             {/* Timeline connectors (Desktop) */}
             <div className="hidden md:block absolute top-8 left-[20%] right-[20%] h-0.5 bg-gray-200 -z-10" />
 
@@ -478,7 +478,7 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Section 6: Application Form */}
-      <section ref={formRef} className="py-20 px-4 bg-gray-50" id="apply">
+      <section ref={formRef} className="py-12 md:py-20 px-4 bg-gray-50" id="apply">
         <div className="max-w-3xl mx-auto">
 
           <div className="bg-white rounded-2xl shadow-xl p-1 md:p-8">
@@ -488,7 +488,7 @@ export default function DriverOnboardingPage() {
       </section>
 
       {/* Section 7: Help & FAQ */}
-      <section className="py-20 px-4 max-w-4xl mx-auto">
+      <section className="py-12 md:py-20 px-4 max-w-4xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12">
 
           {/* Need Help Sidebar */}
