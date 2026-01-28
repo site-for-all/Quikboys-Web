@@ -307,8 +307,8 @@ export function LandingPage() {
               </Button>
             </div>
 
-            <div className="lg:w-1/2 relative h-[300px] sm:h-[350px] md:h-[400px]">
-              <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/50 shadow-2xl">
+            <div className="w-full lg:w-1/2 relative h-[300px] sm:h-[350px] md:h-[400px]">
+              <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/50 shadow-2xl bg-gray-200">
                 {evSlides.map((slide, idx) => (
                   <img
                     key={idx}

@@ -107,7 +107,7 @@ export default function DriverOnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
+    <div className="min-h-screen bg-gray-50 pt-16 overflow-x-hidden">
       <SEO
         title="Delivery Boy Job in Bangalore & Hyderabad | Join QuikBoys - Earn Daily"
         description="Apply for delivery partner jobs at QuikBoys. Earn ₹30,000+ monthly, get free EV scooter option, weekly payouts. No experience needed. Join now in Bangalore & Hyderabad!"
@@ -226,9 +226,9 @@ export default function DriverOnboardingPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Eligibility & Steps */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+            <div className="bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 overflow-hidden">
               <h3 className="text-2xl font-bold text-[#1A2744] mb-6 flex items-center gap-2">
                 <span className="bg-[#1A2744] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">?</span>
                 Who Can Get an EV Scooter?
@@ -262,31 +262,32 @@ export default function DriverOnboardingPage() {
                 onClick={() => {
                   document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full bg-[#00D26A] hover:bg-[#00b359] text-white text-lg h-14 font-bold shadow-lg shadow-green-500/20"
+                className="w-full bg-[#00D26A] hover:bg-[#00b359] text-white text-base md:text-lg h-auto py-4 font-bold shadow-lg shadow-green-500/20"
               >
-                🛵 I Want a FREE EV Scooter — Apply Now
+                <span className="hidden sm:inline">🛵 I Want a FREE EV Scooter — Apply Now</span>
+                <span className="sm:hidden">🛵 Get FREE EV Scooter</span>
               </Button>
               <p className="text-center text-xs text-gray-500 mt-2 font-medium">
-                ⚡ First Come, First Served! No investment. No EMI.
+                ⚡ First Come, First Served!
               </p>
             </div>
 
             {/* Steps Visual */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-[#1A2744] mb-6 text-center lg:text-left">Get Your EV in 4 Steps</h3>
+            <div className="space-y-4 md:space-y-6 overflow-hidden">
+              <h3 className="text-2xl font-bold text-[#1A2744] mb-4 md:mb-6 text-center lg:text-left">Get Your EV in 4 Steps</h3>
               {[
-                { step: "1", title: "Apply Online", desc: "Fill the form below and check 'I want an EV Scooter'" },
-                { step: "2", title: "Get Verified", desc: "We verify your documents and check eligibility" },
-                { step: "3", title: "Complete Training", desc: "Short training on EV handling and app usage" },
-                { step: "4", title: "Start Earning", desc: "Collect your scooter and begin deliveries!" }
+                { step: "1", title: "Apply Online", desc: "Fill the form and check 'I want an EV Scooter'" },
+                { step: "2", title: "Get Verified", desc: "We verify your documents and eligibility" },
+                { step: "3", title: "Complete Training", desc: "Short training on EV and app usage" },
+                { step: "4", title: "Start Earning", desc: "Collect your scooter and begin!" }
               ].map((s, i) => (
-                <div key={i} className="flex items-center gap-6 bg-white/60 p-4 rounded-xl border border-white/50">
-                  <div className="w-12 h-12 bg-[#1A2744] text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                <div key={i} className="flex items-center gap-4 md:gap-6 bg-white/60 p-3 md:p-4 rounded-xl border border-white/50">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[#1A2744] text-white rounded-full flex items-center justify-center text-lg md:text-xl font-bold flex-shrink-0">
                     {s.step}
                   </div>
-                  <div>
-                    <h4 className="font-bold text-[#1A2744] text-lg">{s.title}</h4>
-                    <p className="text-gray-600">{s.desc}</p>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-[#1A2744] text-base md:text-lg">{s.title}</h4>
+                    <p className="text-gray-600 text-sm md:text-base">{s.desc}</p>
                   </div>
                 </div>
               ))}
