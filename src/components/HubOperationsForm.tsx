@@ -95,7 +95,15 @@ export function HubOperationsForm() {
 
     } catch (error: any) {
       console.error('Submission Error:', error);
-      alert('Failed to submit application: ' + error.message);
+
+      // Handle specific database errors with user-friendly messages
+      if (error.message?.includes('phone_number_key') || error.code === '23505') {
+        alert('This phone number is already registered. Please use a different phone number or contact support if you need to update your existing application.');
+      } else if (error.message?.includes('email') && error.message?.includes('unique')) {
+        alert('This email address is already registered. Please use a different email or contact support.');
+      } else {
+        alert('Failed to submit application: ' + error.message);
+      }
     } finally {
       setIsSubmitting(false);
     }
