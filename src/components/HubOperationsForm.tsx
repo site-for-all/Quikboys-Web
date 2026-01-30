@@ -201,12 +201,12 @@ export function HubOperationsForm() {
           {/* Row 3: Email & DOB */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address <span className="text-red-500">*</span></Label>
+              <Label htmlFor="email">Email Address (Optional)</Label>
               <Input id="email" type="email" placeholder="your.email@example.com" {...register('email')} className={errors.email ? 'border-red-500' : ''} />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="dateOfBirth">Date of Birth <span className="text-red-500">*</span></Label>
+              <Label htmlFor="dateOfBirth">Date of Birth (Optional)</Label>
               <Input id="dateOfBirth" type="date" {...register('dateOfBirth')} className={errors.dateOfBirth ? 'border-red-500' : ''} />
               {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
             </div>
@@ -286,7 +286,7 @@ export function HubOperationsForm() {
               <Input id="currentJobTitle" placeholder="e.g. Team Lead" {...register('currentJobTitle')} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="yearsOfExperience">Years of Experience <span className="text-red-500">*</span></Label>
+              <Label htmlFor="yearsOfExperience">Years of Experience (Optional)</Label>
               <Select onValueChange={(val) => setValue('yearsOfExperience', val)}>
                 <SelectTrigger className={errors.yearsOfExperience ? 'border-red-500' : ''}>
                   <SelectValue placeholder="Select Experience" />
@@ -305,7 +305,7 @@ export function HubOperationsForm() {
 
           {/* Two Wheeler & Motivation */}
           <div className="space-y-2">
-            <Label>Do you have a two-wheeler? <span className="text-red-500">*</span></Label>
+            <Label>Do you have a two-wheeler? (Optional)</Label>
             <RadioGroup onValueChange={(val) => setValue('hasTwoWheeler', val as any)} className="flex space-x-4">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="yes" id="tw-yes" />
@@ -347,7 +347,7 @@ export function HubOperationsForm() {
             <Button type="submit" className="w-full h-14 text-lg font-bold bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-lg" disabled={isSubmitting}>
               {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting...</> : 'Submit Application'}
             </Button>
-            <p className="text-center text-sm text-gray-500 mt-4"><span className="text-red-500">*</span> All fields are required</p>
+            <p className="text-center text-sm text-gray-500 mt-4"><span className="text-red-500">*</span> Required fields</p>
           </div>
 
         </form>

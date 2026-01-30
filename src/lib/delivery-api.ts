@@ -18,8 +18,8 @@ export interface RegistrationData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  email: string;
-  dateOfBirth: string;
+  email?: string;
+  dateOfBirth?: string;
   gender: 'male' | 'female' | 'other';
   addressLine1: string;
   addressLine2?: string;
@@ -76,8 +76,6 @@ export async function submitDriverApplication(
   formData.append('firstName', data.firstName);
   formData.append('lastName', data.lastName);
   formData.append('phoneNumber', data.phoneNumber);
-  formData.append('email', data.email);
-  formData.append('dateOfBirth', data.dateOfBirth);
   formData.append('gender', data.gender);
   formData.append('addressLine1', data.addressLine1);
   formData.append('city', data.city);
@@ -85,6 +83,12 @@ export async function submitDriverApplication(
   formData.append('pinCode', data.pinCode);
 
   // Optional fields
+  if (data.email) {
+    formData.append('email', data.email);
+  }
+  if (data.dateOfBirth) {
+    formData.append('dateOfBirth', data.dateOfBirth);
+  }
   if (data.addressLine2) {
     formData.append('addressLine2', data.addressLine2);
   }

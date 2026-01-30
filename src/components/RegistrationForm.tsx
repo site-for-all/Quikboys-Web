@@ -50,11 +50,7 @@ export function RegistrationForm() {
   async function onSubmit(data: DriverFormValues) {
     setIsSubmitting(true);
     try {
-      if (!aadhaarFile || !licenseFile) {
-        alert("Please upload both Aadhaar Card and Driving License");
-        setIsSubmitting(false);
-        return;
-      }
+      // Aadhaar and License are now optional
 
       // Submit to NestJS backend API
       const response = await submitDriverApplication(
@@ -216,7 +212,7 @@ export function RegistrationForm() {
               {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address <span className="text-red-500">*</span></Label>
+              <Label htmlFor="email">Email Address (Optional)</Label>
               <Input
                 id="email"
                 type="email"
@@ -231,7 +227,7 @@ export function RegistrationForm() {
           {/* Personal Info */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="dateOfBirth">Date of Birth <span className="text-red-500">*</span></Label>
+              <Label htmlFor="dateOfBirth">Date of Birth (Optional)</Label>
               <Input
                 id="dateOfBirth"
                 type="date"
@@ -321,7 +317,7 @@ export function RegistrationForm() {
           {/* Document Uploads */}
           <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
             <div className="space-y-3">
-              <Label htmlFor="aadhaar">Aadhaar Card <span className="text-red-500">*</span></Label>
+              <Label htmlFor="aadhaar">Aadhaar Card (Optional)</Label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#DC2626] transition-colors cursor-pointer relative bg-gray-50">
                 <Input
                   id="aadhaar"
@@ -339,7 +335,7 @@ export function RegistrationForm() {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor="license">Driving License <span className="text-red-500">*</span></Label>
+              <Label htmlFor="license">Driving License (Optional)</Label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#DC2626] transition-colors cursor-pointer relative bg-gray-50">
                 <Input
                   id="license"
@@ -420,7 +416,7 @@ export function RegistrationForm() {
               )}
             </Button>
             <p className="text-center text-sm text-gray-500 mt-4">
-              <span className="text-red-500">*</span> All fields are required
+              <span className="text-red-500">*</span> Required fields
             </p>
           </div>
 

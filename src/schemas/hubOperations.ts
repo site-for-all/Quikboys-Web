@@ -5,9 +5,9 @@ export const hubOperationsSchema = z.object({
     required_error: "Please select a role.",
   }),
   fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
+  email: z.string().email("Invalid email address").optional().or(z.literal('')),
   phoneNumber: z.string().regex(/^[0-9]{10}$/, "Phone number must be 10 digits"),
-  dateOfBirth: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date"),
+  dateOfBirth: z.string().optional().or(z.literal('')),
   gender: z.enum(["Male", "Female", "Other"], {
     required_error: "Please select a gender.",
   }),
@@ -21,10 +21,8 @@ export const hubOperationsSchema = z.object({
 
   // Professional
   currentJobTitle: z.string().optional(),
-  yearsOfExperience: z.string().min(1, "Please select experience"),
-  hasTwoWheeler: z.enum(["yes", "no"], {
-    required_error: "Please specify if you own a two-wheeler",
-  }),
+  yearsOfExperience: z.string().optional(),
+  hasTwoWheeler: z.enum(["yes", "no"]).optional(),
   whyJoin: z.string().optional(),
 
   // Documents
