@@ -10,6 +10,7 @@ import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsOfService } from './components/legal/TermsOfService';
 import { RiderAgreement } from './components/legal/RiderAgreement';
 import { CookiePolicy } from './components/legal/CookiePolicy';
+import { DeleteAccount } from './components/legal/DeleteAccount';
 import { AboutUsPage } from './pages/AboutUsPage';
 import CareersPage from './pages/CareersPage';
 import { ContactPage } from './pages/ContactPage';
@@ -44,6 +45,7 @@ function App() {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/rider-agreement" element={<RiderAgreement />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/delete-account" element={<DeleteAccount />} />
           </Routes>
         </main>
         <Footer />
