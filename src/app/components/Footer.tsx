@@ -98,13 +98,13 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm text-center md:text-left">
-            © {new Date().getFullYear()} QuikBoys Logistics. All rights reserved.
+          <div className="text-gray-400 text-sm text-center md:text-left">
+            <p>© {new Date().getFullYear()} OMLVS Private Limited. All rights reserved.</p>
             <div className="mt-2 flex items-center gap-2">
               <span className="opacity-60 text-xs text-white">Powered by:</span>
               <img src="/images/omlvs-logo.png" alt="OMLVS" className="h-6 w-auto" />
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </footer>
