@@ -11,7 +11,7 @@ import { Checkbox } from '../app/components/ui/checkbox';
 import { Textarea } from '../app/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '../app/components/ui/radio-group';
 import { Loader2, CheckCircle, Copy, Share2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { submitHubOperationsApplication, DeliveryApiError } from '../lib/delivery-api';
 import { indianStates } from '../schemas/hubOperations';
 
 export function HubOperationsForm() {
@@ -36,73 +36,44 @@ export function HubOperationsForm() {
   async function onSubmit(data: HubOperationsFormValues) {
     setIsSubmitting(true);
     try {
-      let resumeUrl = '';
+      const resumeFile = data.resume && data.resume.length > 0 ? data.resume[0] : null;
 
-      if (data.resume && data.resume.length > 0) {
-        const file = data.resume[0];
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${data.role}_${Date.now()}.${fileExt}`;
-        const filePath = `hub-operations-resumes/${fileName}`;
+      const result = await submitHubOperationsApplication(
+        {
+          role: data.role,
+          fullName: data.fullName,
+          phoneNumber: data.phoneNumber,
+          email: data.email,
+          dateOfBirth: data.dateOfBirth,
+          gender: data.gender,
+          addressLine1: data.addressLine1,
+          addressLine2: data.addressLine2,
+          city: data.city,
+          state: data.state,
+          pinCode: data.pinCode,
+          currentJobTitle: data.currentJobTitle,
+          yearsOfExperience: data.yearsOfExperience,
+          hasTwoWheeler: data.hasTwoWheeler,
+          whyJoin: data.whyJoin,
+          referredBy: data.referralCode,
+          whatsappConsent: data.whatsappConsent,
+        },
+        resumeFile,
+      );
 
-        const { error: uploadError } = await supabase.storage
-          .from('hub-operations-resumes')
-          .upload(filePath, file);
-
-        if (uploadError) throw new Error('Resume upload failed: ' + uploadError.message);
-
-        const { data: { publicUrl } } = supabase.storage
-          .from('hub-operations-resumes')
-          .getPublicUrl(filePath);
-
-        resumeUrl = publicUrl;
-      }
-
-      const payload = {
-        role: data.role,
-        full_name: data.fullName,
-        phone_number: data.phoneNumber,
-        email: data.email || null,
-        date_of_birth: data.dateOfBirth || null,
-        gender: data.gender,
-        address_line_1: data.addressLine1,
-        address_line_2: data.addressLine2 || null,
-        city: data.city,
-        state: data.state,
-        pin_code: data.pinCode,
-        current_job_title: data.currentJobTitle || null,
-        years_of_experience: data.yearsOfExperience || null,
-        has_two_wheeler: data.hasTwoWheeler ? data.hasTwoWheeler === 'yes' : null,
-        why_join: data.whyJoin || null,
-        resume_url: resumeUrl || null,
-        referred_by: data.referralCode || null,
-        whatsapp_consent: data.whatsappConsent,
-        application_status: 'pending'
-      };
-
-      const { data: insertedData, error: insertError } = await supabase
-        .from('hub_operations_applications')
-        .insert([payload])
-        .select('referral_code')
-        .single();
-
-      if (insertError) throw insertError;
-
-      if (insertedData) {
-        setGeneratedReferralCode(insertedData.referral_code);
+      if (result.data) {
+        setGeneratedReferralCode(result.data.referralCode || '');
         setRole(data.role.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()));
         setIsSuccess(true);
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Submission Error:', error);
 
-      // Handle specific database errors with user-friendly messages
-      if (error.message?.includes('phone_number_key') || error.code === '23505') {
-        alert('This phone number is already registered. Please use a different phone number or contact support if you need to update your existing application.');
-      } else if (error.message?.includes('email') && error.message?.includes('unique')) {
-        alert('This email address is already registered. Please use a different email or contact support.');
+      if (error instanceof DeliveryApiError && error.statusCode === 409) {
+        alert(error.message);
       } else {
-        alert('Failed to submit application: ' + error.message);
+        alert('Failed to submit application: ' + (error instanceof Error ? error.message : 'Unknown error'));
       }
     } finally {
       setIsSubmitting(false);

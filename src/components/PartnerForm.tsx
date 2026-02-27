@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ap
 import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
 import { Loader2, CheckCircle, Store } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { submitPartnerApplication, DeliveryApiError } from '../lib/delivery-api';
 
 export function PartnerForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,38 +40,29 @@ export function PartnerForm() {
   async function onSubmit(data: PartnerFormValues) {
     setIsSubmitting(true);
     try {
-      const payload = {
-        business_name: data.businessName,
-        owner_name: data.ownerName,
-        phone_number: data.phoneNumber,
+      await submitPartnerApplication({
+        businessName: data.businessName,
+        ownerName: data.ownerName,
+        phoneNumber: data.phoneNumber,
         email: data.email,
-        business_type: data.businessType,
-        gst_number: data.gstNumber || null,
-        website: data.website || null,
+        businessType: data.businessType,
+        gstNumber: data.gstNumber,
+        website: data.website,
         city: data.city,
         state: data.state,
-        pin_code: data.pinCode,
-        daily_deliveries: data.dailyDeliveries,
-        requirements: data.needs || null,
-        whatsapp_consent: data.whatsappConsent,
-        status: 'pending'
-      };
+        pinCode: data.pinCode,
+        dailyDeliveries: data.dailyDeliveries,
+        requirements: data.needs,
+        whatsappConsent: data.whatsappConsent,
+      });
 
-      const { error } = await supabase.from('partners').insert([payload]);
-
-      if (error) {
-        throw error;
-      }
-
-      console.log('Form Submitted to Supabase:', data);
       setIsSuccess(true);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Submission Error:', error);
-      if (error.message?.includes('violates row-level security') || error.message?.includes('fetch failed')) {
-        alert('Supabase connection failed (Check Console). Demo mode: Success!');
-        setIsSuccess(true);
+      if (error instanceof DeliveryApiError && error.statusCode === 409) {
+        alert(error.message);
       } else {
-        alert('Failed to submit application: ' + error.message);
+        alert('Failed to submit application: ' + (error instanceof Error ? error.message : 'Unknown error'));
       }
     } finally {
       setIsSubmitting(false);

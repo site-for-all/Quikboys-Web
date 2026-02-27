@@ -16,7 +16,7 @@ import {
     SelectValue,
 } from '../app/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../app/components/ui/card';
-import { supabase } from '../lib/supabase';
+import { submitCareerApplication, DeliveryApiError } from '../lib/delivery-api';
 
 const careersSchema = z.object({
     fullName: z.string().min(2, "Name is required"),
@@ -55,29 +55,25 @@ export function CareersForm() {
         setUploadError(null);
 
         try {
-            // In a real implementation, we would handle file upload here if we had a file input
-            // For now, we'll just insert the data
-
-            const { error } = await supabase
-                .from('careers_talent_pool')
-                .insert({
-                    full_name: data.fullName,
-                    email: data.email,
-                    phone_number: data.phone,
-                    linkedin_url: data.linkedIn || null,
-                    portfolio_url: data.portfolio || null,
-                    department: data.department,
-                    experience_years: data.experience,
-                    // resume_url: resumeUrl // If we had file upload
-                });
-
-            if (error) throw error;
+            await submitCareerApplication({
+                fullName: data.fullName,
+                email: data.email,
+                phoneNumber: data.phone,
+                linkedinUrl: data.linkedIn || undefined,
+                portfolioUrl: data.portfolio || undefined,
+                department: data.department,
+                experienceYears: data.experience,
+            });
 
             setIsSuccess(true);
             reset();
         } catch (error) {
             console.error('Error submitting application:', error);
-            setUploadError("Something went wrong. Please try again.");
+            if (error instanceof DeliveryApiError) {
+                setUploadError(error.message);
+            } else {
+                setUploadError("Something went wrong. Please try again.");
+            }
         } finally {
             setIsSubmitting(false);
         }

@@ -115,8 +115,8 @@ export function PrivacyPolicy() {
               Our Platform uses third-party services and software development kits (SDKs) that may collect data on our behalf. These include but are not limited to:
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              <li><strong>Supabase:</strong> For database and backend services, including storage of user data and uploaded documents.</li>
-              <li><strong>Vercel Analytics:</strong> For website performance monitoring and usage analytics.</li>
+              <li><strong>AWS (Amazon Web Services):</strong> For database, backend services, and storage of user data and uploaded documents.</li>
+              <li><strong>AWS CloudWatch RUM:</strong> For website performance monitoring and usage analytics.</li>
               <li><strong>Google Maps / Location Services:</strong> For real-time location tracking and route optimization.</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-4">
