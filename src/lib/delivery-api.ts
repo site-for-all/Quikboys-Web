@@ -5,11 +5,10 @@
  * Used for driver registration and other authentication-related operations.
  */
 
-// In production, use relative URL to leverage Amplify proxy (avoids CORS issues)
+// In production, call backend directly (Amplify proxy doesn't support POST bodies)
 // In development, use the environment variable or localhost
-const API_BASE_URL = import.meta.env.PROD
-  ? '/api/v1'
-  : (import.meta.env.VITE_DELIVERY_API_URL || 'http://localhost:3000/api/v1');
+const API_BASE_URL = import.meta.env.VITE_DELIVERY_API_URL
+  || (import.meta.env.PROD ? 'https://dev.quikboys.com/api/v1' : 'http://localhost:3001/api/v1');
 
 /**
  * Registration data interface matching the backend WebRegistrationDto
