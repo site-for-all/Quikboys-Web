@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PartnerForm } from '../../components/PartnerForm';
 import { SEO } from '../../components/SEO';
+import { AlertTriangle } from "lucide-react";
 import {
   Users, Truck,
   CheckCircle2, MapPin, Zap, LayoutGrid, ArrowRight,
@@ -281,14 +282,19 @@ export function PartnerPage() {
           <div className="shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
             <div className="bg-[#FFFBEB] border-l-4 border-[#F59E0B] p-4 mb-8 rounded-r-lg shadow-sm">
               <div className="flex gap-3">
-                <span className="text-2xl">⚠️</span>
+                <AlertTriangle className="w-6 h-6 text-[#B45309] mt-1 flex-shrink-0" />
+
                 <div>
                   <h3 className="font-bold text-[#92400E] mb-1">ELIGIBILITY CRITERIA</h3>
+
                   <p className="text-[#B45309] text-sm leading-relaxed">
                     Businesses currently registered and operating on ONDC (Open Network for Digital Commerce)
                     are <strong>NOT</strong> eligible to partner with QuikBoys at this time.
                     <br className="mt-2" />
-                    If you have questions about eligibility, contact us at <a href="mailto:partners@quikboys.com" className="underline">partners@quikboys.com</a>
+                    If you have questions about eligibility, contact us at{" "}
+                    <a href="mailto:partners@quikboys.com" className="underline">
+                      partners@quikboys.com
+                    </a>
                   </p>
                 </div>
               </div>

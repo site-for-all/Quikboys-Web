@@ -10,9 +10,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" className="inline-block">
-              <img src="/images/omlvs-quikboys-logo.png" alt="OMLVS QuikBoys Logo" className="h-12 w-auto" />
-            </Link>
+            <a href="/" className="inline-block bg-white px-2 py-1 rounded-md">
+              <img
+                src="/images/omlvs-quikboys-logo.png"
+                alt="OMLVS QuikBoys Logo"
+                className="h-12 w-auto"
+              />
+            </a>
             <p className="text-gray-400 leading-relaxed">
               India's smartest logistics network. Delivering happiness, one verified kilometer at a time.
             </p>
@@ -82,8 +86,29 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6">Contact Us</h3>
             <ul className="space-y-4 text-gray-400">
-              <li>support@quikboys.com</li>
-              <li>WhatsApp: +91 83413 45599</li>
+
+              {/* Email */}
+              <li>
+                <a
+                  href="mailto:support@quikboys.com"
+                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                >
+                  support@quikboys.com
+                </a>
+              </li>
+
+              {/* WhatsApp */}
+              <li>
+                <a
+                  href="https://wa.me/918951050999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                >
+                  WhatsApp: +91 8951050999
+                </a>
+              </li>
+
               <li className="pt-4">
                 <div className="flex items-center gap-2">
                   <span className="text-sm">Region:</span>
@@ -92,19 +117,32 @@ export function Footer() {
                   </div>
                 </div>
               </li>
+
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-400 text-sm text-center md:text-left">
-            <p>© {new Date().getFullYear()} OMLVS Private Limited. All rights reserved.</p>
-            <div className="mt-2 flex items-center gap-2">
+        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+
+          <div className="text-gray-400 text-sm flex flex-col items-center md:items-start">
+
+            <p>
+              © {new Date().getFullYear()} OMLVS Private Limited. All rights reserved.
+            </p>
+
+            <div className="mt-2 flex items-center justify-center md:justify-start gap-2">
               <span className="opacity-60 text-xs text-white">Powered by:</span>
-              <img src="/images/omlvs-logo.png" alt="OMLVS" className="h-6 w-auto" />
+
+              <img
+                src="/images/omlvs-logo.png"
+                alt="OMLVS"
+                className="h-6 w-auto object-contain"
+              />
             </div>
+
           </div>
+
         </div>
       </div>
     </footer>

@@ -4,10 +4,27 @@ import { motion } from 'framer-motion';
 import { RegistrationForm } from '../../components/RegistrationForm';
 import { SEO } from '../../components/SEO';
 import {
-  Wallet, Truck, CheckCircle,
-  Smartphone, FileText, User, ArrowDown, HelpCircle,
-  FileCheck, Rocket
-} from 'lucide-react';
+  Wallet,
+  Truck,
+  CheckCircle,
+  Smartphone,
+  FileText,
+  User,
+  ArrowDown,
+  HelpCircle,
+  FileCheck,
+  Rocket,
+  GraduationCap,
+  Star,
+  Bike,
+  CreditCard,
+  Flame,
+  Calendar,
+  Fuel,
+  Gift,
+  Home,
+  Zap
+} from "lucide-react";
 import { Button } from '../components/ui/button';
 import {
   Accordion,
@@ -161,13 +178,17 @@ export default function DriverOnboardingPage() {
             className="flex flex-wrap justify-center gap-3 mb-10"
           >
             {[
-              { icon: "🎓", text: "No Education Required" },
-              { icon: "🌟", text: "Freshers Welcome" },
-              { icon: "🛵", text: "Free EV Option" },
-              { icon: "💳", text: "Weekly Payouts" }
+              { icon: <GraduationCap size={16} />, text: "No Education Required" },
+              { icon: <Star size={16} />, text: "Freshers Welcome" },
+              { icon: <Bike size={16} />, text: "Free EV Option" },
+              { icon: <CreditCard size={16} />, text: "Weekly Payouts" }
             ].map((badge, i) => (
-              <span key={i} className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium text-white flex items-center gap-2">
-                <span>{badge.icon}</span> {badge.text}
+              <span
+                key={i}
+                className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium text-white flex items-center gap-2"
+              >
+                {badge.icon}
+                {badge.text}
               </span>
             ))}
           </motion.div>
@@ -196,9 +217,10 @@ export default function DriverOnboardingPage() {
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
-              className="inline-block bg-[#DC2626] text-white px-6 py-2 rounded-full text-base font-bold shadow-lg shadow-red-500/30 mb-4 md:mb-6 uppercase tracking-wider"
+              className="inline-flex items-center bg-[#DC2626] text-white px-6 py-2 rounded-full text-base font-bold shadow-lg shadow-red-500/30 mb-4 md:mb-6 uppercase tracking-wider"
             >
-              🔥 First Come, First Served!
+              <Flame className="mr-2" size={18} />
+              First Come, First Served!
             </motion.div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1A2744] mb-4">
               Get an EV Scooter — <span className="text-[#00D26A]">ZERO Investment</span>
@@ -211,15 +233,37 @@ export default function DriverOnboardingPage() {
           {/* 6 Key Benefits Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-16">
             {[
-              { emoji: "💰", title: "₹0 Investment", desc: "No down payment. No deposit. No hidden charges.", badge: "ZERO COST" },
-              { emoji: "📅", title: "₹0 EMI Forever", desc: "No monthly installments. No interest charges. No loan.", badge: "NO EMI" },
-              { emoji: "⛽", title: "₹0 Fuel Expense", desc: "Electric = No petrol. Save ₹5,000/mo on fuel.", badge: "SAVE ₹5K/MONTH" }
+              {
+                icon: <Wallet size={36} className="text-[#00D26A]" />,
+                title: "₹0 Investment",
+                desc: "No down payment. No deposit. No hidden charges.",
+                badge: "ZERO COST"
+              },
+              {
+                icon: <Calendar size={36} className="text-[#00D26A]" />,
+                title: "₹0 EMI Forever",
+                desc: "No monthly installments. No interest charges. No loan.",
+                badge: "NO EMI"
+              },
+              {
+                icon: <Fuel size={36} className="text-[#00D26A]" />,
+                title: "₹0 Fuel Expense",
+                desc: "Electric = No petrol. Save ₹5,000/mo on fuel.",
+                badge: "SAVE ₹5K/MONTH"
+              }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white/80 backdrop-blur-sm border border-green-100 rounded-2xl p-6 hover:shadow-xl transition-all relative overflow-hidden group">
+              <div
+                key={idx}
+                className="bg-white/80 backdrop-blur-sm border border-green-100 rounded-2xl p-6 hover:shadow-xl transition-all relative overflow-hidden group"
+              >
                 <div className="absolute top-4 right-4 bg-green-100 text-[#00D26A] text-xs font-bold px-2 py-1 rounded-lg">
                   {item.badge}
                 </div>
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.emoji}</div>
+
+                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
+
                 <h3 className="text-xl font-bold text-[#1A2744] mb-2">{item.title}</h3>
                 <p className="text-gray-600 font-medium">{item.desc}</p>
               </div>
@@ -251,7 +295,8 @@ export default function DriverOnboardingPage() {
 
               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-8">
                 <h4 className="font-bold text-yellow-800 mb-1 flex items-center gap-2">
-                  📋 PRIORITY ALLOCATION
+                  <FileText size={18} className="text-yellow-700" />
+                  PRIORITY ALLOCATION
                 </h4>
                 <p className="text-yellow-700 text-sm">
                   EV scooters are allocated on a <strong>First Come, First Served</strong> basis. Apply early to secure your EV scooter!
@@ -262,13 +307,16 @@ export default function DriverOnboardingPage() {
                 onClick={() => {
                   document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full bg-[#00D26A] hover:bg-[#00b359] text-white text-base md:text-lg h-auto py-4 font-bold shadow-lg shadow-green-500/20"
+                className="w-full bg-[#00D26A] hover:bg-[#00b359] text-white text-base md:text-lg h-auto py-4 font-bold shadow-lg shadow-green-500/20 flex items-center justify-center gap-2"
               >
-                <span className="hidden sm:inline">🛵 I Want a FREE EV Scooter — Apply Now</span>
-                <span className="sm:hidden">🛵 Get FREE EV Scooter</span>
+                <Bike size={18} />
+                <span className="hidden sm:inline">I Want a FREE EV Scooter — Apply Now</span>
+                <span className="sm:hidden">Get FREE EV Scooter</span>
               </Button>
-              <p className="text-center text-xs text-gray-500 mt-2 font-medium">
-                ⚡ First Come, First Served!
+
+              <p className="text-center text-xs text-gray-500 mt-2 font-medium flex items-center justify-center gap-1">
+                <Zap size={14} className="text-yellow-500" />
+                First Come, First Served!
               </p>
             </div>
 
@@ -301,7 +349,7 @@ export default function DriverOnboardingPage() {
       <section className="bg-[#EFF6FF] border-y border-blue-100 py-10">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full text-blue-600 mb-4">
-            <span className="text-3xl">🎓</span>
+            <GraduationCap size={32} className="text-blue-600" />
           </div>
           <h2 className="text-3xl font-bold text-[#1A2744] mb-3">NO EDUCATION REQUIRED</h2>
           <p className="text-xl text-blue-800 font-medium max-w-2xl mx-auto">
@@ -318,64 +366,77 @@ export default function DriverOnboardingPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              icon: "🎓",
+              icon: <GraduationCap size={36} className="text-blue-600" />,
               title: "Education Not Required",
               desc: "8th pass to graduate — everyone can join. Your skills matter, not your degree.",
               color: "text-blue-600",
               msg: "No Degree Needed"
             },
             {
-              icon: "🌟",
+              icon: <Star size={36} className="text-[#DC2626]" />,
               title: "No Experience Needed",
               desc: "Never done delivery before? No problem! We'll train you.",
               color: "text-[#DC2626]",
               msg: "Freshers Welcome"
             },
             {
-              icon: "🚛",
+              icon: <Truck size={36} className="text-[#1A2744]" />,
               title: "Zero Dead KM",
               desc: "Every single kilometer you travel earns you money—no exceptions.",
               color: "text-[#1A2744]",
               msg: "Earn More"
             },
             {
-              icon: "🏠",
+              icon: <Home size={36} className="text-[#1A2744]" />,
               title: "Hero Return",
               desc: "Get paid deliveries on your route back home at the end of your shift.",
               color: "text-[#1A2744]",
               msg: "Paid Commute"
             },
             {
-              icon: "💳",
+              icon: <CreditCard size={36} className="text-[#1A2744]" />,
               title: "Weekly Payouts",
               desc: "Money in your bank every Monday. No delays.",
               color: "text-[#1A2744]",
               msg: "Fast Payment"
             }
           ].map((item, index) => (
-            <Card key={index} className="border-t-4 border-t-[#38BDF8] hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <Card
+              key={index}
+              className="border-t-4 border-t-[#38BDF8] hover:shadow-lg transition-all transform hover:-translate-y-1"
+            >
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <div className="text-4xl">{item.icon}</div>
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-gray-100 rounded-md ${item.color}`}>
+                  <div className="mb-2">{item.icon}</div>
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-gray-100 rounded-md ${item.color}`}
+                  >
                     {item.msg}
                   </span>
                 </div>
+
                 <h3 className="text-xl font-bold text-[#1A2744] mb-2">{item.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
+
           <Card className="border-t-4 border-t-[#00D26A] bg-[#ECFDF5] hover:shadow-lg transition-all transform hover:-translate-y-1">
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
-                <div className="text-4xl">🛵</div>
+                <Bike size={36} className="text-[#00D26A]" />
                 <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-green-100 text-[#00D26A] rounded-md">
                   Apply Now
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-[#1A2744] mb-2">Free EV Scooter</h3>
-              <p className="text-gray-600 leading-relaxed">No vehicle? Get an EV scooter with zero investment, zero EMI.</p>
+
+              <h3 className="text-xl font-bold text-[#1A2744] mb-2">
+                Free EV Scooter
+              </h3>
+
+              <p className="text-gray-600 leading-relaxed">
+                No vehicle? Get an EV scooter with zero investment, zero EMI.
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -394,15 +455,19 @@ export default function DriverOnboardingPage() {
             { icon: FileText, label: "Aadhaar Card", value: "Valid government-issued ID" },
             { icon: Truck, label: "Driving License", value: "Valid two-wheeler license" },
             { icon: Wallet, label: "Bank Account", value: "For weekly direct deposits" },
-            { icon: "🎓", label: "Education", value: "NO education requirement — everyone welcome!", highlight: true },
+            { icon: GraduationCap, label: "Education", value: "No education requirement — everyone welcome!" },
           ].map((req, i) => (
-            <div key={i} className={`flex items-center p-4 bg-white rounded-lg border ${req.highlight ? 'border-green-200 bg-green-50' : 'border-gray-100'} shadow-sm`}>
-              <div className={`${req.highlight ? 'text-green-600 text-2xl' : 'text-[#00D26A]'} mr-4`}>
-                {typeof req.icon === 'string' ? req.icon : <req.icon className="w-6 h-6" />}
+            <div
+              key={i}
+              className="flex items-center p-4 bg-white rounded-lg border border-gray-100 shadow-sm"
+            >
+              <div className="text-[#00D26A] mr-4">
+                <req.icon className="w-6 h-6" />
               </div>
+
               <div>
                 <h4 className="font-bold text-[#1A2744]">{req.label}</h4>
-                <p className={`text-sm ${req.highlight ? 'text-green-700 font-bold' : 'text-gray-500'}`}>{req.value}</p>
+                <p className="text-sm text-gray-500">{req.value}</p>
               </div>
             </div>
           ))}
@@ -421,8 +486,9 @@ export default function DriverOnboardingPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="bg-amber-100 rounded-3xl p-6 md:p-12 border border-amber-200 flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="flex-1 space-y-6">
-              <div className="inline-block bg-[#F59E0B] text-white px-4 py-1 rounded-full text-sm font-bold">
-                🎁 REFER & EARN
+              <div className="inline-flex items-center gap-2 bg-[#F59E0B] text-white px-4 py-1 rounded-full text-sm font-bold">
+                <Gift size={16} />
+                REFER & EARN
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#78350F]">
                 Earn Bonus For Every Friend You Refer!
@@ -446,7 +512,7 @@ export default function DriverOnboardingPage() {
               </div>
             </div>
             <div className="w-full md:w-1/3 flex justify-center">
-              <div className="text-[100px] leading-none select-none">🎁</div>
+              <Gift size={100} className="text-[#F59E0B]" />
             </div>
           </div>
         </div>
@@ -504,7 +570,7 @@ export default function DriverOnboardingPage() {
               <div className="space-y-4">
                 <div>
                   <p className="text-xs text-gray-400 uppercase font-semibold">WhatsApp Support</p>
-                  <a href="https://wa.me/918341345599" className="text-[#38BDF8] font-medium hover:underline">+91 83413 45599</a>
+                  <a href="https://wa.me/918341345599" className="text-[#38BDF8] font-medium hover:underline">+91 8951050999</a>
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase font-semibold">Email</p>

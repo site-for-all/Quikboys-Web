@@ -1,7 +1,14 @@
 
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Zap, Bell, MapPin, Clock, BatteryCharging, Wrench, Leaf, TrendingUp } from "lucide-react";
+import {
+  ArrowRight, Zap, Bell, MapPin, Clock, BatteryCharging, Wrench, Leaf, TrendingUp, Home, Moon,
+  Sunrise,
+  CalendarDays,
+  Timer, Rocket,
+  Lightbulb,
+  Handshake
+} from "lucide-react";
 import { SEO } from '../../components/SEO';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -82,7 +89,8 @@ export function LandingPage() {
                 onClick={() => document.getElementById('ev-program')?.scrollIntoView({ behavior: 'smooth' })}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border border-green-200 text-[#00D26A] font-bold text-sm shadow-sm md:mb-0 hover:bg-green-100 hover:border-green-300 transition-colors cursor-pointer"
               >
-                ⚡ Get an EV Scooter @ ₹0 Investment
+                <Zap size={16} />
+                Get an EV Scooter @ ₹0 Investment
               </button>
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-[#1A2744] leading-[1.1]">
                 Deliver Smart. <br />
@@ -127,101 +135,152 @@ export function LandingPage() {
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#38BDF8]/20 rounded-full blur-2xl" />
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#DC2626]/20 rounded-full blur-2xl" />
 
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 relative z-10">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 relative z-10 w-full max-w-md mx-auto">
+
                 {/* Header / Toggle */}
-                <div className="bg-gray-50 p-6 border-b border-gray-100">
-                  <h3 className="text-lg font-bold text-[#1A2744] mb-4 text-center">Return Trip Home 🏠</h3>
-                  <div className="flex bg-gray-200 p-1 rounded-xl relative">
-                    <div className="w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-gray-500 transition-colors" onClick={() => setIsQuikBoys(false)}>
-                      Other Apps
-                    </div>
-                    <div className="w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-[#DC2626] transition-colors" onClick={() => setIsQuikBoys(true)}>
-                      QuikBoys
-                    </div>
+                <div className="bg-gray-50 p-4 sm:p-6 border-b border-gray-100">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1A2744] mb-4 text-center flex items-center justify-center">
+                    <Home size={18} className="mr-2" />
+                    Return Trip Home
+                  </h3>
+
+                  <div className="flex bg-gray-200 p-1 rounded-xl relative overflow-hidden">
+
+                    {/* Sliding Background */}
                     <motion.div
-                      className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-sm"
+                      className="absolute top-1 bottom-1 left-1 w-1/2 bg-white rounded-lg shadow-sm"
                       animate={{ x: isQuikBoys ? "100%" : "0%" }}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
+
+                    <div
+                      className={`w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-sm sm:text-base transition-colors ${!isQuikBoys ? "text-gray-700" : "text-gray-400"
+                        }`}
+                      onClick={() => setIsQuikBoys(false)}
+                    >
+                      Other Apps
+                    </div>
+
+                    <div
+                      className={`w-1/2 text-center py-2 z-10 cursor-pointer font-bold text-sm sm:text-base transition-colors ${isQuikBoys ? "text-[#DC2626]" : "text-gray-400"
+                        }`}
+                      onClick={() => setIsQuikBoys(true)}
+                    >
+                      QuikBoys
+                    </div>
+
                   </div>
                 </div>
 
                 {/* Simulation Content */}
-                <div className="p-8">
+                <div className="p-4 sm:p-8">
+
                   <AnimatePresence mode="wait">
+
                     {isQuikBoys ? (
+
                       <motion.div
                         key="quikboys"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="space-y-6"
+                        className="space-y-4 sm:space-y-6"
                       >
-                        {/* Route Visualization */}
-                        <div className="flex items-center justify-between text-sm font-medium text-gray-500 mb-2">
-                          <span>Drop Location</span>
+
+                        {/* Route */}
+                        <div className="flex items-center justify-between text-xs sm:text-sm font-medium text-gray-500 mb-2 px-1">
+                          <span>Drop</span>
                           <span className="text-[#00D26A] font-bold">New Order!</span>
                           <span>Home</span>
                         </div>
+
                         <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-[#00D26A] to-gray-200 w-full" />
                         </div>
 
-                        {/* Stats */}
-                        <div className="bg-[#ECFDF5] border border-[#00D26A]/20 rounded-xl p-4 flex justify-between items-center">
-                          <div className="flex items-center gap-3">
-                            <div className="bg-[#00D26A] text-white p-2 rounded-lg">
-                              <TrendingUp size={20} />
+                        {/* Profit Card */}
+                        <div className="bg-[#ECFDF5] border border-[#00D26A]/20 rounded-xl p-3 sm:p-4 flex items-center justify-between">
+
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="bg-[#00D26A] text-white p-2 sm:p-3 rounded-lg">
+                              <TrendingUp size={18} />
                             </div>
+
                             <div>
-                              <p className="text-sm text-[#065F46]">Return Trip</p>
-                              <p className="font-bold text-[#064E3B]">Earning Active</p>
+                              <p className="text-xs sm:text-sm text-[#065F46]">Return Trip</p>
+                              <p className="font-bold text-sm sm:text-base text-[#064E3B]">
+                                Earning Active
+                              </p>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-[#00D26A]">+₹120</p>
+
+                          {/* Fixed Right Section */}
+                          <div className="flex flex-col items-end">
+                            <p className="text-xl sm:text-2xl font-bold text-[#00D26A] whitespace-nowrap">
+                              +₹120
+                            </p>
                             <p className="text-xs text-[#065F46]">Profit</p>
                           </div>
+
                         </div>
+
                       </motion.div>
+
                     ) : (
+
                       <motion.div
                         key="others"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
-                        className="space-y-6"
+                        className="space-y-4 sm:space-y-6"
                       >
-                        {/* Route Visualization */}
-                        <div className="flex items-center justify-between text-sm font-medium text-gray-500 mb-2">
-                          <span>Drop Location</span>
-                          <span className="text-red-400">Empty Return</span>
+
+                        {/* Route */}
+                        <div className="flex items-center justify-between text-xs sm:text-sm font-medium text-gray-500 mb-2 px-1">
+                          <span>Drop</span>
+                          <span className="text-red-400 font-semibold">Empty Return</span>
                           <span>Home</span>
                         </div>
+
                         <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-red-300 to-gray-200 w-full opacity-50" />
                         </div>
 
-                        {/* Stats */}
-                        <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex justify-between items-center">
-                          <div className="flex items-center gap-3">
-                            <div className="bg-red-100 text-red-600 p-2 rounded-lg">
-                              <BatteryCharging size={20} className="rotate-180" />
+                        {/* Loss Card */}
+                        <div className="bg-red-50 border border-red-100 rounded-xl p-3 sm:p-4 flex items-center justify-between">
+
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="bg-red-100 text-red-600 p-2 sm:p-3 rounded-lg">
+                              <BatteryCharging size={18} className="rotate-180" />
                             </div>
+
                             <div>
-                              <p className="text-sm text-red-800">Return Trip</p>
-                              <p className="font-bold text-red-900">Fuel Cost</p>
+                              <p className="text-xs sm:text-sm text-red-800">Return Trip</p>
+                              <p className="font-bold text-sm sm:text-base text-red-900">
+                                Fuel Cost
+                              </p>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-red-600">-₹40</p>
+
+                          {/* Fixed Right Section */}
+                          <div className="flex flex-col items-end">
+                            <p className="text-xl sm:text-2xl font-bold text-red-600 whitespace-nowrap">
+                              -₹40
+                            </p>
                             <p className="text-xs text-red-800">Loss</p>
                           </div>
+
                         </div>
+
                       </motion.div>
+
                     )}
+
                   </AnimatePresence>
+
                 </div>
+
               </div>
             </div>
           </div>
@@ -344,35 +403,45 @@ export function LandingPage() {
         </div>
       </section >
 
-      {/* NEW: Work Part-Time Section */}
-      < section className="py-24 bg-[#FFFBEB]" >
+      {/* Work Part-Time Section */}
+      <section className="py-16 md:py-24 bg-[#FFFBEB]">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="bg-amber-100 rounded-[2.5rem] p-8 md:p-16 border border-amber-200 shadow-xl overflow-hidden relative">
+          <div className="bg-amber-100 rounded-[2rem] p-6 md:p-16 border border-amber-200 shadow-xl overflow-hidden relative">
+
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-amber-300/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#F59E0B]/10 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4 pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-20">
+
+              {/* LEFT SIDE */}
               <div className="lg:w-1/2">
+
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full text-[#B45309] font-bold text-sm shadow-sm border border-amber-200 mb-6">
                   <Clock size={16} /> Flexible Hours
                 </div>
-                <h2 className="text-4xl lg:text-6xl font-bold text-[#78350F] mb-6 leading-tight">
+
+                <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-[#78350F] mb-6 leading-tight">
                   Work Part-Time. <br /> Earn Full-Time.
                 </h2>
-                <p className="text-xl text-[#92400E] mb-8 leading-relaxed font-medium">
+
+                <p className="text-lg md:text-xl text-[#92400E] mb-8 leading-relaxed font-medium">
                   Got a few hours free? Turn your spare time into cash. Whether you're a student, professional, or just looking for extra income.
                 </p>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-3 md:gap-4">
                   {[
-                    "🌙 Evening Shifts",
-                    "🌅 Morning Shifts",
-                    "📅 Weekends Only",
-                    "⏱️ 2-4 Hours/Day"
-                  ].map((tag, i) => (
-                    <span key={i} className="bg-white px-4 py-2 rounded-xl text-[#B45309] font-bold shadow-sm border border-amber-100">
-                      {tag}
+                    { icon: <Moon size={16} />, text: "Evening Shifts" },
+                    { icon: <Sunrise size={16} />, text: "Morning Shifts" },
+                    { icon: <CalendarDays size={16} />, text: "Weekends Only" },
+                    { icon: <Timer size={16} />, text: "2-4 Hours/Day" }
+                  ].map((item, i) => (
+                    <span
+                      key={i}
+                      className="flex items-center gap-2 bg-white px-4 py-2 rounded-xl text-[#B45309] text-sm md:text-base font-bold shadow-sm border border-amber-100"
+                    >
+                      {item.icon}
+                      {item.text}
                     </span>
                   ))}
                 </div>
@@ -380,69 +449,98 @@ export function LandingPage() {
                 <div className="mt-10 pt-8 border-t border-[#F59E0B]/20">
                   <div className="flex items-center gap-4">
                     <div className="bg-white p-3 rounded-full shadow-md text-[#F59E0B]">
-                      <TrendingUp size={24} />
+                      <TrendingUp size={22} />
                     </div>
+
                     <div>
-                      <p className="font-bold text-[#78350F] text-lg">Earn up to ₹300/hour</p>
-                      <p className="text-[#92400E] text-sm">During peak hours and surge times.</p>
+                      <p className="font-bold text-[#78350F] text-base md:text-lg">
+                        Earn up to ₹300/hour
+                      </p>
+                      <p className="text-[#92400E] text-sm">
+                        During peak hours and surge times.
+                      </p>
                     </div>
                   </div>
                 </div>
+
               </div>
 
+              {/* RIGHT SIDE CARD */}
               <div className="lg:w-1/2 w-full">
-                <div className="bg-white rounded-3xl p-8 shadow-xl border border-white/50 relative transform hover:rotate-1 transition-transform duration-500">
-                  <div className="absolute -top-6 -right-6 bg-[#F59E0B] text-white w-20 h-20 rounded-full flex items-center justify-center font-bold text-center text-xs p-2 shadow-lg rotate-12 z-20">
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-white/50 relative md:hover:rotate-1 transition-transform duration-500">
+
+                  {/* Badge */}
+                  <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[#F59E0B] text-white w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold text-center text-[10px] md:text-xs p-2 shadow-lg rotate-12 z-20">
                     INSTANT PAYOUTS
                   </div>
 
-                  <h3 className="text-2xl font-bold text-[#1A2744] mb-6 text-center">Your Earning Potential</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#1A2744] mb-6 text-center">
+                    Your Earning Potential
+                  </h3>
 
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl border border-gray-100">
+
+                    {/* 2 HOURS */}
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 p-4 bg-gray-50 rounded-xl border border-gray-100">
                       <div>
                         <p className="font-bold text-[#1A2744]">2 Hours / Day</p>
                         <p className="text-xs text-gray-500">Part-Time (Student)</p>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold text-[#00D26A] text-xl">₹8,000+</p>
+
+                      <div className="text-left sm:text-right">
+                        <p className="font-bold text-[#00D26A] text-lg md:text-xl">
+                          ₹8,000+
+                        </p>
                         <p className="text-[10px] text-gray-400">per month</p>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl border border-gray-100 scale-105 shadow-md border-l-4 border-l-[#F59E0B]">
+
+                    {/* 4 HOURS */}
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 p-4 bg-gray-50 rounded-xl border border-gray-100 md:scale-105 shadow-md border-l-4 border-l-[#F59E0B]">
                       <div>
                         <p className="font-bold text-[#1A2744]">4 Hours / Day</p>
                         <p className="text-xs text-gray-500">Half-Day (Professional)</p>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold text-[#00D26A] text-xl">₹18,000+</p>
+
+                      <div className="text-left sm:text-right">
+                        <p className="font-bold text-[#00D26A] text-lg md:text-xl">
+                          ₹18,000+
+                        </p>
                         <p className="text-[10px] text-gray-400">per month</p>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gray-50 rounded-xl border border-gray-100">
+
+                    {/* WEEKENDS */}
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 p-4 bg-gray-50 rounded-xl border border-gray-100">
                       <div>
                         <p className="font-bold text-[#1A2744]">Weekends Only</p>
                         <p className="text-xs text-gray-500">Sat & Sun (10 hrs)</p>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold text-[#00D26A] text-xl">₹12,000+</p>
+
+                      <div className="text-left sm:text-right">
+                        <p className="font-bold text-[#00D26A] text-lg md:text-xl">
+                          ₹12,000+
+                        </p>
                         <p className="text-[10px] text-gray-400">per month</p>
                       </div>
                     </div>
+
                   </div>
 
                   <Button
                     onClick={() => navigate('/driver-onboarding')}
-                    className="w-full mt-8 bg-[#1A2744] hover:bg-[#0A1830] text-white h-12 text-lg font-bold"
+                    className="w-full mt-6 bg-[#1A2744] hover:bg-[#0A1830] text-white h-11 md:h-12 text-base md:text-lg font-bold"
                   >
                     Start Part-Time Job
                   </Button>
+
                 </div>
               </div>
+
             </div>
           </div>
         </div>
-      </section >
+      </section>
 
       {/* How It Works Section */}
       < section className="py-24 bg-white" >
@@ -561,9 +659,18 @@ export function LandingPage() {
               Join a team of dreamers and doers. We are looking for passionate individuals to help us revolutionize last-mile delivery. Engineering, Operations, Marketing, and more.
             </p>
             <div className="flex flex-wrap gap-4">
-              {["🚀 Fast-Paced Growth", "💡 Innovation First", "🤝 Great Culture"].map((tag, i) => (
-                <span key={i} className="flex items-center gap-2 text-sm font-medium text-gray-300 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
-                  <span className="w-1.5 h-1.5 bg-[#00D26A] rounded-full" /> {tag}
+              {[
+                { icon: <Rocket size={16} />, text: "Fast-Paced Growth" },
+                { icon: <Lightbulb size={16} />, text: "Innovation First" },
+                { icon: <Handshake size={16} />, text: "Great Culture" }
+              ].map((item, i) => (
+                <span
+                  key={i}
+                  className="flex items-center gap-2 text-sm font-medium text-gray-300 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10"
+                >
+                  <span className="w-1.5 h-1.5 bg-[#00D26A] rounded-full" />
+                  {item.icon}
+                  {item.text}
                 </span>
               ))}
             </div>

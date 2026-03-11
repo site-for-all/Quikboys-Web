@@ -9,7 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../app/components/ui/card';
 import { Label } from '../app/components/ui/label';
 import { Checkbox } from '../app/components/ui/checkbox';
-import { Loader2, CheckCircle, Upload, Copy, Share2 } from 'lucide-react';
+import { Loader2, CheckCircle, Upload, Copy, Share2,
+  Bike} from 'lucide-react';
 
 import { submitDriverApplication, DeliveryApiError } from '../lib/delivery-api';
 
@@ -377,7 +378,10 @@ export function RegistrationForm() {
                   htmlFor="interestedInEV"
                   className="font-bold text-[#1A2744] cursor-pointer"
                 >
-                  I want a FREE EV Scooter from QuikBoys 🛵
+                  <span className="flex items-center gap-2">
+  <Bike size={16} />
+  I want a FREE EV Scooter from QuikBoys
+</span>
                 </Label>
                 <p className="text-sm text-green-700 mt-1">
                   Check this box to apply for our Zero Investment, Zero EMI EV Program.

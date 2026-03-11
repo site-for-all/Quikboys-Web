@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Users, BarChart, Store, CheckCircle } from 'lucide-react';
+import { Users, BarChart, Store, CheckCircle, Rocket } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { HubOperationsForm } from '../../components/HubOperationsForm';
 
@@ -79,8 +79,9 @@ export default function HubOperationsPage() {
         <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-l from-[#E6FFFA] to-transparent opacity-60" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#E6FFFA] text-[#00D26A] font-semibold text-sm mb-6 border border-[#00D26A]/20">
-              🚀 Build your career in logistics operations
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6FFFA] text-[#00D26A] font-semibold text-sm mb-6 border border-[#00D26A]/20">
+              <Rocket size={16} />
+              Build your career in logistics operations
             </span>
             <h1 className="text-5xl md:text-7xl font-bold text-[#1A2744] mb-6 tracking-tight">
               Join Hub Operations<br />
@@ -118,7 +119,13 @@ export default function HubOperationsPage() {
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Monitor performance & attendance</li>
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Ensure hub targets are met</li>
               </ul>
-              <Button onClick={scrollToForm} variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">Apply as Cluster Manager</Button>
+              <Button
+                onClick={scrollToForm}
+                variant="outline"
+                className="w-full !border-blue-600 !text-blue-600 hover:!bg-blue-50"
+              >
+                Apply as Cluster Manager
+              </Button>
             </div>
 
             {/* Hub Executive */}
@@ -151,7 +158,13 @@ export default function HubOperationsPage() {
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Coordinate order handoffs</li>
                 <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-1" /> Handle on-ground issues</li>
               </ul>
-              <Button onClick={scrollToForm} variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">Apply as Hub Captain</Button>
+              <Button
+                onClick={scrollToForm}
+                variant="outline"
+                className="w-full !border-orange-600 !text-orange-600 hover:!bg-orange-50"
+              >
+                Apply as Hub Captain
+              </Button>
             </div>
           </div>
         </div>
