@@ -100,12 +100,21 @@ export function Footer() {
               {/* WhatsApp */}
               <li>
                 <a
-                  href="https://wa.me/918951050999"
+                  href="https://wa.me/918904538989"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#25D366] transition-colors"
+                >
+                  WhatsApp: +91 8904538989
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="tel:18004014018"
                   className="text-gray-400 hover:text-[#DC2626] transition-colors"
                 >
-                  WhatsApp: +91 8951050999
+                  Toll Free: 1800 401 4018
                 </a>
               </li>
 
