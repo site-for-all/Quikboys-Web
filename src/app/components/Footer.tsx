@@ -103,9 +103,20 @@ export function Footer() {
                   href="https://wa.me/918904538989"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#25D366] transition-colors"
+                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
                 >
                   WhatsApp: +91 8904538989
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://wa.me/918341345599"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                >
+                  WhatsApp: +91 8341345599
                 </a>
               </li>
 
