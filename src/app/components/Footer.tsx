@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Linkedin, Instagram, MessageCircle } from 'lucide-react';
 import { CountrySelector } from './ui/country-selector';
@@ -8,6 +7,7 @@ export function Footer() {
     <footer className="bg-[#1A2744] text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
           {/* Brand Column */}
           <div className="space-y-6">
             <a href="/" className="inline-block bg-white px-2 py-1 rounded-md">
@@ -17,47 +17,68 @@ export function Footer() {
                 className="h-12 w-auto"
               />
             </a>
+
             <p className="text-gray-400 leading-relaxed">
               India's smartest logistics network. Delivering happiness, one verified kilometer at a time.
             </p>
+
+            {/* Social Icons */}
             <div className="flex gap-4">
               <a
                 href="https://www.facebook.com/share/1hYLhcg7se/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-full hover:bg-[#DC2626] transition-colors"
-                aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5 text-white" />
               </a>
+
               <a
                 href="https://www.linkedin.com/in/quik-boys-b502a53a3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-full hover:bg-[#DC2626] transition-colors"
-                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
+
               <a
-                href="https://www.instagram.com/quikboys_com?igsh=MW0wMHUwZjljZWtrMw=="
+                href="https://www.instagram.com/quikboys_com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-full hover:bg-[#DC2626] transition-colors"
-                aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5 text-white" />
               </a>
+
               <a
                 href="https://wa.me/918341345599"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-full hover:bg-[#DC2626] transition-colors"
-                aria-label="WhatsApp"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
               </a>
             </div>
+
+            {/* PLAY STORE DOWNLOAD */}
+            <div className="pt-4">
+              <p className="text-sm text-gray-400 mb-2">Download our Delivery Partner App</p>
+
+              <a
+                href="https://play.google.com/store/apps/details?id=com.quikboys.deliverypartner"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block hover:scale-105 transition"
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
+                  className="h-12 w-auto"
+                />
+              </a>
+            </div>
+
           </div>
 
           {/* Quick Links */}
@@ -87,23 +108,21 @@ export function Footer() {
             <h3 className="text-lg font-bold mb-6">Contact Us</h3>
             <ul className="space-y-4 text-gray-400">
 
-              {/* Email */}
               <li>
                 <a
                   href="mailto:support@quikboys.com"
-                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                  className="hover:text-[#DC2626] transition-colors"
                 >
                   support@quikboys.com
                 </a>
               </li>
 
-              {/* WhatsApp */}
               <li>
                 <a
                   href="https://wa.me/918904538989"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                  className="hover:text-[#DC2626] transition-colors"
                 >
                   WhatsApp: +91 8904538989
                 </a>
@@ -112,7 +131,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:18004014018"
-                  className="text-gray-400 hover:text-[#DC2626] transition-colors"
+                  className="hover:text-[#DC2626] transition-colors"
                 >
                   Toll Free: 1800 401 4018
                 </a>
@@ -131,7 +150,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
 
           <div className="text-gray-400 text-sm flex flex-col items-center md:items-start">
